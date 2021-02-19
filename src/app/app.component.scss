@@ -1,0 +1,32 @@
+.spacer {
+  flex: 1 1 auto;
+}
+.sidenav-container {
+  flex: 1;
+  .sidenav {
+      min-width: 240px;
+      a {
+          display: block;
+          padding: 6px 24px;
+          width: 100%;
+          text-align: left;
+      }
+  }
+  main {
+      padding: 18px 24px;
+  }
+}
+
+.example-container {
+  width: 400px;
+  height: 200px;
+  margin: 12px;
+  border: 1px solid #555;
+}
+
+mat-drawer-content {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}

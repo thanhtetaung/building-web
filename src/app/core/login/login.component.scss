@@ -1,0 +1,29 @@
+mat-card {
+  max-width: 350px;
+  margin: 10em auto;
+  text-align: center;
+}
+
+mat-form-field {
+  display: block;
+}
+
+.mat-raised-button {
+  margin-top: 15px;
+  width: 100% !important;
+  height: 46px;
+}
+.signup {
+  display: block;
+  margin: 20px 0px;
+  color: #0052cc;
+  text-decoration: none;
+}
+
+.signup:hover {
+  text-decoration: underline;
+}
+
+mat-error {
+  text-align: left;
+}

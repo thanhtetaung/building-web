@@ -1,0 +1,19 @@
+mat-card {
+  max-width: 400px;
+  margin: 10em auto;
+  text-align: center;
+}
+
+mat-form-field {
+  display: block;
+}
+
+.mat-raised-button {
+  margin-top: 15px;
+  width: 100% !important;
+  height: 46px;
+}
+
+mat-error {
+  text-align: left;
+}

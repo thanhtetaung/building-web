@@ -1,0 +1,51 @@
+mat-card {
+  max-width: 400px;
+  margin: 10em auto;
+  text-align: center;
+}
+
+mat-form-field {
+  display: block;
+}
+
+.mat-raised-button {
+  margin-top: 15px;
+  width: 100% !important;
+  height: 46px;
+}
+.signin {
+  display: block;
+  margin: 20px 0px;
+  color: #0052cc;
+  text-decoration: none;
+}
+
+.signin:hover {
+  text-decoration: underline;
+}
+
+mat-form-field.ng-invalid.ng-touched {
+  animation: bigger;
+  animation-duration: 0.3s;
+  margin-bottom: 17px;
+}
+
+@keyframes bigger {
+  from {margin-bottom: 0;}
+  to {margin-bottom: 17px;}
+}
+
+mat-form-field.ng-valid.ng-touched {
+  animation: smaller;
+  animation-duration: 0.3s;
+  margin-bottom: 0px;
+}
+
+@keyframes smaller {
+  from {margin-bottom: 17px;}
+  to {margin-bottom: 0;}
+}
+
+mat-error {
+  text-align: left;
+}

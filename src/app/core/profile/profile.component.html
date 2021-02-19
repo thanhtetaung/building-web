@@ -1,0 +1,28 @@
+<mat-card>
+  <mat-card-content>
+    <form action="" #form="ngForm" (ngSubmit)="update()">
+      <h2>Profile</h2>
+      <mat-error *ngIf="errorMessage">
+        {{errorMessage}}
+      </mat-error>
+
+      <mat-form-field class="full-width-input">
+        <input matInput placeholder="First Name" [(ngModel)]='user.firstName'
+                maxLength="50"
+                id="firstName" name="firstName" required #firstName="ngModel">
+          <mat-error *ngIf="(firstName.touched || form.submitted) && firstName.hasError('required')" class="invalid-feedback required">First Name is required</mat-error>
+          <mat-error *ngIf="firstName.hasError('invalid')" class="invalid-feedback required">Invalid First Name.</mat-error>
+          <mat-error *ngIf="(firstName.touched || form.submitted) && firstName.hasError('maxlength')" class="invalid-feedback required">First Name should be between 5 to 50 characters.</mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width-input">
+        <input matInput placeholder="Last Name" [(ngModel)]='user.lastName'
+                maxLength="50"
+                id="lastName" name="lastName" required #lastName="ngModel">
+          <mat-error *ngIf="(lastName.touched || form.submitted) && lastName.hasError('required')" class="invalid-feedback required">Last Name is required.</mat-error>
+          <mat-error *ngIf="lastName.hasError('invalid')" class="invalid-feedback required">Invalid Last Name</mat-error>
+          <mat-error *ngIf="(lastName.touched || form.submitted) && lastName.hasError('maxlength')" class="invalid-feedback required">Last Name should be between 5 to 50 characters.</mat-error>
+      </mat-form-field>
+      <button type="submit" mat-raised-button color="primary">Update</button>
+    </form>
+  </mat-card-content>
+</mat-card>

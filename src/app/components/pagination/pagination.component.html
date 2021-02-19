@@ -1,0 +1,26 @@
+<pagination-template #p="paginationApi" (pageChange)="pageChanged($event)">
+  <div class="tb-footer bg-color">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="paginate-text text-center text-md-left">
+          Showing {{ (page - 1) * recordPerPage + 1 }}  - {{((page - 1) * recordPerPage + recordPerPage) > totalRecord ? totalRecord : ((page - 1) * recordPerPage + recordPerPage)}} of {{totalRecord}}
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="pagination-wrapper text-center text-md-right">
+          <ul class="pager">
+            <li *ngIf="!p.isFirstPage() && totalRecord > 0"><a (click)="p.setCurrent(1)">First</a></li>
+            <li *ngIf="!p.isFirstPage() && totalRecord > 0"><a (click)="p.previous()">Previous</a></li>
+            <li *ngFor="let page of p.pages">
+              <a (click)="p.getCurrent() !== page.value && p.setCurrent(page.value)"
+                 [class.active]="p.getCurrent() === page.value">{{page.label}}
+              </a>
+            </li>
+            <li *ngIf="!p.isLastPage() && totalRecord > 0"><a (click)="p.next()">Next</a></li>
+            <li *ngIf="!p.isLastPage() && totalRecord > 0"><a (click)="p.setCurrent(p.getLastPage())">Last</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</pagination-template>
