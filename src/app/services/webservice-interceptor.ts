@@ -15,7 +15,6 @@ export class WebserviceInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     let headers: { [key: string]: string } = {
-      'Content-Type': configuration.contentType,
       'Accept': configuration.accept
     };
 

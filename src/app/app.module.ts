@@ -16,6 +16,7 @@ import { AppDateAdapter, APP_DATE_FORMATS } from './shared/common/date-util';
 import { WebserviceInterceptor } from './services/webservice-interceptor';
 import { SharedModule } from './shared/common/shared.module';
 import { CoreModule } from './core/core.module';
+import { BuildingService } from './services/building.service';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { CoreModule } from './core/core.module';
     TdDialogService,
     HistoryService,
     UserService,
+    BuildingService,
     {
       provide: DateAdapter, useClass: AppDateAdapter
     },

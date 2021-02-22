@@ -7,6 +7,7 @@ import { RegisterComponent } from './register/register.component';
 import { SharedModule } from '../shared/common/shared.module';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ProfileComponent } from './profile/profile.component';
+import { FileUploadModule } from '@iplab/ngx-file-upload';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { ProfileComponent } from './profile/profile.component';
     AppRoutingModule,
     SharedModule,
     CommonModule,
+    FileUploadModule,
   ],
   declarations: [
     HomeComponent,
