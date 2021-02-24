@@ -11,8 +11,8 @@
 }
 
 .main-content {
-  padding: 30px;
-  max-width: 800px;
+  max-width: 1000px;
+  margin: auto;
 }
 
 .progress-wrapper {
@@ -20,9 +20,74 @@
 }
 
 .progress-label {
-  text-align: center;width: 100%;
+  text-align: center;
+  width: 100%;
 }
 
 mat-progress-bar {
   height: 20px;
+}
+
+.main {
+  background-color: gray;
+  height: 100%;
+  position: relative;
+}
+.content {
+  background-color: gray;
+  padding: 30px;
+}
+
+.box {
+  background-color: white;
+  text-align: center;
+  height: 150px;
+  box-shadow:  0 0 10px  rgba(0,0,0,0.6);
+  -moz-box-shadow: 0 0 10px  rgba(0,0,0,0.6);
+  -webkit-box-shadow: 0 0 10px  rgba(0,0,0,0.6);
+  -o-box-shadow: 0 0 10px  rgba(0,0,0,0.6);
+  z-index: 100;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+}
+
+.upload-box {
+  background-color: white;
+  box-shadow:  0 0 10px  rgba(0,0,0,0.6);
+  -moz-box-shadow: 0 0 10px  rgba(0,0,0,0.6);
+  -webkit-box-shadow: 0 0 10px  rgba(0,0,0,0.6);
+  -o-box-shadow: 0 0 10px  rgba(0,0,0,0.6);
+  border-radius: 5px;
+  padding: 54px 100px;
+}
+
+.form-box {
+  background-color: white;
+  box-shadow:  0 0 10px  rgba(0,0,0,0.6);
+  -moz-box-shadow: 0 0 10px  rgba(0,0,0,0.6);
+  -webkit-box-shadow: 0 0 10px  rgba(0,0,0,0.6);
+  -o-box-shadow: 0 0 10px  rgba(0,0,0,0.6);
+  border-radius: 5px;
+  padding: 54px 100px;
+  margin-bottom: 20px;
+}
+
+.submit-button {
+  height: 60px;
+  margin-top: 45px;
+  padding: 12px 90px;
+  background-color: #337CD1;
+}
+
+.uplaod-button {
+  background-color: white;
+  border-color: gray;
+  height: 40px;
+  box-shadow:  0 2px 5px rgba(0,0,0,0.6);
+  -moz-box-shadow: 0 2px 5px rgba(0,0,0,0.6);
+  -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.6);
+  -o-box-shadow: 0 2px 5px rgba(0,0,0,0.6);
 }

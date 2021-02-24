@@ -6,13 +6,15 @@
         <mat-error *ngIf="errorMessage">
           {{errorMessage}}
         </mat-error>
-        <mat-form-field class="full-width-input">
+        <mat-form-field class="full-width-input" appearance='outline'>
+          <mat-label>Username</mat-label>
           <input matInput placeholder="Username" [(ngModel)]='user.username'
                   id="username" name="username" required #username="ngModel">
             <mat-error *ngIf="(username.touched || loginForm.submitted) && username.hasError('required')" class="invalid-feedback required">Username is required.</mat-error>
             <mat-error *ngIf="username.hasError('invalid')" class="invalid-feedback required">Invalid username.</mat-error>
         </mat-form-field>
-        <mat-form-field class="full-width-input">
+        <mat-form-field class="full-width-input" appearance='outline'>
+          <mat-label>Password</mat-label>
           <input matInput placeholder="Password" [(ngModel)]='user.password' type="password"
                   id="password" name="password" required #password="ngModel">
             <mat-error *ngIf="(password.touched || loginForm.submitted) && password.hasError('required')" class="invalid-feedback required">Password is required.</mat-error>

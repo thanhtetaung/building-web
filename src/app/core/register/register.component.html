@@ -5,14 +5,16 @@
       <mat-error *ngIf="errorMessage">
         {{errorMessage}}
       </mat-error>
-      <mat-form-field class="full-width-input">
+      <mat-form-field class="full-width-input" appearance='outline'>
+        <mat-label>Username</mat-label>
         <input matInput placeholder="Username" [(ngModel)]='user.username'
                 id="username" name="username" minlength="5" maxLength="50" required #username="ngModel">
           <mat-error *ngIf="(username.touched || registerForm.submitted) && username.hasError('required')" class="invalid-feedback required">Username is required.</mat-error>
           <mat-error *ngIf="(username.touched || registerForm.submitted) && (username.hasError('minlength') || username.hasError('maxlength'))" class="invalid-feedback required">Username should be between 5 to 50 characters.</mat-error>
           <mat-error *ngIf="username.hasError('invalid')" class="invalid-feedback required">Invalid username.</mat-error>
       </mat-form-field>
-      <mat-form-field class="full-width-input">
+      <mat-form-field class="full-width-input" appearance='outline'>
+        <mat-label>Password</mat-label>
         <input matInput placeholder="Password" [(ngModel)]='user.password' type="password"
             pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,50})"
             validateEqual='confirmPassword' reverse='true'
@@ -24,7 +26,8 @@
             Password must be between 8 and 50 characters. Password must contain at least upper and lower case words, as well as numbers and special characters.
           </mat-error>
       </mat-form-field>
-      <mat-form-field class="full-width-input">
+      <mat-form-field class="full-width-input" appearance='outline'>
+        <mat-label>Confirm Password</mat-label>
         <input matInput placeholder="Confirm Password" [(ngModel)]='user.confirmPassword' type="password"
                 validateEqual='password'
                 id="confirmPassword" name="confirmPassword" required #confirmPassword="ngModel">
@@ -34,7 +37,8 @@
           </mat-error>
           <mat-error *ngIf="confirmPassword.hasError('invalid')" class="invalid-feedback required">Invalid Confirm Password.</mat-error>
       </mat-form-field>
-      <mat-form-field class="full-width-input">
+      <mat-form-field class="full-width-input" appearance='outline'>
+        <mat-label>First Name</mat-label>
         <input matInput placeholder="First Name" [(ngModel)]='user.firstName'
                 maxLength="50"
                 id="firstName" name="firstName" required #firstName="ngModel">
@@ -42,7 +46,8 @@
           <mat-error *ngIf="firstName.hasError('invalid')" class="invalid-feedback required">Invalid First Name.</mat-error>
           <mat-error *ngIf="(firstName.touched || registerForm.submitted) && firstName.hasError('maxlength')" class="invalid-feedback required">First Name should be between 5 to 50 characters.</mat-error>
       </mat-form-field>
-      <mat-form-field class="full-width-input">
+      <mat-form-field class="full-width-input" appearance='outline'>
+        <mat-label>Last Name</mat-label>
         <input matInput placeholder="Last Name" [(ngModel)]='user.lastName'
                 maxLength="50"
                 id="lastName" name="lastName" required #lastName="ngModel">

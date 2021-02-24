@@ -1,27 +1,37 @@
-<div class='main-content'>
-  <div>
-    <div *ngFor='let uploaded of uploadedFile'>
-      <div *ngFor='let url of uploaded.imageList'>
-        <div class='image-border'>
-          <img [src]='imageUrl(url)' class='uploaded-image' />
+<div class='main'>
+    <div class='main-content'>
+      <div style='height: 40px;'></div>
+      <div class='form-box'>
+        <div *ngFor='let uploaded of uploadedFile'>
+          <div *ngFor='let url of uploaded.imageList'>
+            <div class='image-border'>
+              <img [src]='imageUrl(url)' class='uploaded-image' />
+            </div>
+          </div>
+
         </div>
       </div>
-
+      <div class='upload-box'>
+        <p>
+          Huskyは図面の画像を解析し、図面データを作成します。図面データをドラッグしてアップロードしてください。
+        </p>
+        <div class='progress-wrapper' *ngIf='isUploading'>
+          <div class='progress-label' >Uploading file : {{progress}}%</div>
+          <mat-progress-bar mode="determinate" [value]="progress" >
+          </mat-progress-bar>
+        </div>
+        <div class='progress-wrapper' *ngIf='isUploading && progress == 100' style="margin-top: 10px;">
+          <div class='progress-label' >Waiting Response</div>
+          <mat-progress-bar mode='query'>
+          </mat-progress-bar>
+        </div>
+        <file-upload [control]="fileControl" accept="pdf|jpg|jpeg|png" >
+        </file-upload>
+      </div>
+      <div style='height: 200px;'></div>
     </div>
-  </div>
-  <div>
 
-      <div class='progress-wrapper' *ngIf='isUploading'>
-        <div class='progress-label' >Uploading file : {{progress}}%</div>
-        <mat-progress-bar mode="determinate" [value]="progress" >
-        </mat-progress-bar>
-      </div>
-      <div class='progress-wrapper' *ngIf='isUploading && progress == 100' style="margin-top: 10px;">
-        <div class='progress-label' >Waiting Response</div>
-        <mat-progress-bar mode='query'>
-        </mat-progress-bar>
-      </div>
-      <file-upload [control]="fileControl" accept="pdf|jpg|jpeg|png" ></file-upload>
-  </div>
+    <div class='box'>
+      <button type="submit" class='submit-button' mat-raised-button color="primary">解析を始める</button>
+    </div>
 </div>
-

@@ -6,7 +6,8 @@
         {{errorMessage}}
       </mat-error>
 
-      <mat-form-field class="full-width-input">
+      <mat-form-field class="full-width-input" appearance='outline'>
+        <mat-label>First Name</mat-label>
         <input matInput placeholder="First Name" [(ngModel)]='user.firstName'
                 maxLength="50"
                 id="firstName" name="firstName" required #firstName="ngModel">
@@ -14,7 +15,8 @@
           <mat-error *ngIf="firstName.hasError('invalid')" class="invalid-feedback required">Invalid First Name.</mat-error>
           <mat-error *ngIf="(firstName.touched || form.submitted) && firstName.hasError('maxlength')" class="invalid-feedback required">First Name should be between 5 to 50 characters.</mat-error>
       </mat-form-field>
-      <mat-form-field class="full-width-input">
+      <mat-form-field class="full-width-input" appearance='outline'>
+        <mat-label>Last Name</mat-label>
         <input matInput placeholder="Last Name" [(ngModel)]='user.lastName'
                 maxLength="50"
                 id="lastName" name="lastName" required #lastName="ngModel">

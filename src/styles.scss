@@ -2,3 +2,29 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+mat-form-field.ng-invalid.ng-touched {
+  animation: bigger;
+  animation-duration: 0.3s;
+  margin-bottom: 17px;
+}
+
+@keyframes bigger {
+  from {margin-bottom: 0;}
+  to {margin-bottom: 17px;}
+}
+
+mat-form-field.ng-valid.ng-touched {
+  animation: smaller;
+  animation-duration: 0.3s;
+  margin-bottom: 0px;
+}
+
+@keyframes smaller {
+  from {margin-bottom: 17px;}
+  to {margin-bottom: 0;}
+}
+
+mat-error {
+  text-align: left;
+}
