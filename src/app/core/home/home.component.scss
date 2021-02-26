@@ -82,10 +82,7 @@ mat-progress-bar {
   background-color: #337CD1;
 }
 
-.upload-button {
-  text-align: center;
-  padding-top: 10px;
-  margin-top: 4px;
+.uplaod-button {
   background-color: white;
   border-color: gray;
   height: 40px;
@@ -93,12 +90,4 @@ mat-progress-bar {
   -moz-box-shadow: 0 2px 5px rgba(0,0,0,0.6);
   -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.6);
   -o-box-shadow: 0 2px 5px rgba(0,0,0,0.6);
-  border-radius: 5px;
-
 }
-
-#no-deco:hover,
-#no-deco:focus {
-    color: #646464;
-}
-
