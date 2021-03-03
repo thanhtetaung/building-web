@@ -29,6 +29,8 @@ jobs:
       - run:
           name: angular-build
           command: yarn ng build --prod --aot --no-progress
+      - setup_remote_docker:
+          version: 19.03.13
       - aws-ecr/build-and-push-image:
           repo: building-web
           tag: 'latest,${CIRCLE_SHA1}'
