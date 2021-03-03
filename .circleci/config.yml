@@ -28,7 +28,7 @@ jobs:
           key: dependencies-{{ checksum "yarn.lock" }}
       - run:
           name: angular-build
-          command: yarn ng -- build --prod --aot --no-progress
+          command: yarn ng build --prod --aot --no-progress
 workflows:
   version: 2.1
   main:

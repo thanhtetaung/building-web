@@ -3,7 +3,7 @@ import {
   HttpClient
 } from '@angular/common/http';
 
-import { Observable } from 'rxjs/observable';
+import { Observable } from 'rxjs';
 import { User } from '../models/user';
 import { configuration } from '../config/configuration';
 
