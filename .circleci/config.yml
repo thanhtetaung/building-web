@@ -1,3 +1,7 @@
+master_only: &master_only
+  filters:
+    branches:
+      only: master
 version: 2.1
 orbs:
   aws-ecr: circleci/aws-ecr@6.15.3
@@ -21,23 +25,20 @@ jobs:
             - ~/node_modules
             - ./node_modules
           key: dependencies-{{ checksum "package-lock.json" }}
-      - run: docker image build -t build-web:$CIRCLE_SHA1
-      - run: docker image tag building:$CIRCLE_SHA1 building:latest
-      - aws-ecr/build-and-push-image:
-          repo: building-web
-          tag: 'latest,$CIRCLE_SHA1'
-      - aws-ecs/deploy-service-update:
-          cluster-name: 'cluster-1'
-          container-image-name-updates: 'container=building-web,tag=${CIRCLE_SHA1}'
-          family: 'building-web'
-          requires:
-            - aws-ecr/build-and-push-image
 workflows:
   version: 2.1
   main:
     jobs:
       - build:
-          filters:
-            branches:
-              only:
-              - master
+          <<: *master_only
+      - aws-ecr/build-and-push-image:
+          <<: *master_only
+          repo: building-web
+          tag: 'latest,$CIRCLE_SHA1'
+      - aws-ecs/deploy-service-update:
+          <<: *master_only
+          cluster-name: 'cluster-1'
+          container-image-name-updates: 'container=building-web,tag=${CIRCLE_SHA1}'
+          family: 'building-web'
+          requires:
+            - aws-ecr/build-and-push-image        
