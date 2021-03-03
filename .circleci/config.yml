@@ -29,22 +29,18 @@ jobs:
       - run:
           name: angular-build
           command: yarn ng build --prod --aot --no-progress
+      - aws-ecr/build-and-push-image:
+          repo: building-web
+          tag: 'latest,${CIRCLE_SHA1}'
+          checkout: false
+      - aws-ecs/update-service:
+          cluster-name: 'cluster-1'
+          container-image-name-updates: 'container=building-web,tag=${CIRCLE_SHA1}'
+          family: 'building-web'
+
 workflows:
   version: 2.1
   main:
     jobs:
       - build:
           <<: *master_only
-      - aws-ecr/build-and-push-image:
-          <<: *master_only
-          repo: building-web
-          tag: 'latest,$CIRCLE_SHA1'
-          requires:
-            - build
-      - aws-ecs/deploy-service-update:
-          <<: *master_only
-          cluster-name: 'cluster-1'
-          container-image-name-updates: 'container=building-web,tag=${CIRCLE_SHA1}'
-          family: 'building-web'
-          requires:
-            - aws-ecr/build-and-push-image
