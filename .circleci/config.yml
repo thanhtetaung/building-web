@@ -18,10 +18,9 @@ jobs:
             - dependencies-{{ checksum "yarn.lock" }}
             # fallback to using the latest cache if no exact match is found
             - dependencies-
-      - run: 
+      - run:
           name: install-dependencies
           command: yarn install
-      - run: ng build --prod
       - save_cache:
           paths:
             - ~/.cache/yarn
@@ -46,4 +45,4 @@ workflows:
           container-image-name-updates: 'container=building-web,tag=${CIRCLE_SHA1}'
           family: 'building-web'
           requires:
-            - aws-ecr/build-and-push-image        
+            - aws-ecr/build-and-push-image
