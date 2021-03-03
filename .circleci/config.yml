@@ -39,6 +39,8 @@ workflows:
           <<: *master_only
           repo: building-web
           tag: 'latest,$CIRCLE_SHA1'
+          requires:
+            - build
       - aws-ecs/deploy-service-update:
           <<: *master_only
           cluster-name: 'cluster-1'
