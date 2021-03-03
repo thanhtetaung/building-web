@@ -15,7 +15,7 @@ export class HistoryService {
     if (this.historyList.length > 1) {
       const current = this.historyList[this.historyList.length - 1];
       let index = this.historyList.length - 2;
-      let previous = null;
+      let previous: string | null = null;
       while (index >= 0) {
         previous = this.historyList[index];
         if ((this.isUserDetail(current) && this.isResetPassword(previous)) || current === previous) {
