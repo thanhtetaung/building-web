@@ -9,22 +9,27 @@ orbs:
 jobs:
   build:
     docker:
-      - image: cimg/node:15.10.0
+      - image: circleci/node:14.16-browsers
     working_directory: ~/repo
     steps:
       - checkout
       - restore_cache:
           keys:
-            - dependencies-{{ checksum "package-lock.json" }}
+            - dependencies-{{ checksum "yarn.lock" }}
             # fallback to using the latest cache if no exact match is found
             - dependencies-
-      - run: npm install -g @angular/cli
+      - run: 
+          name: install-dependencies
+          command: yarn install
       - run: ng build --prod
       - save_cache:
           paths:
-            - ~/node_modules
+            - ~/.cache/yarn
             - ./node_modules
-          key: dependencies-{{ checksum "package-lock.json" }}
+          key: dependencies-{{ checksum "yarn.lock" }}
+      - run:
+          name: angular-build
+          command: yarn ng -- build --prod --aot --no-progress
 workflows:
   version: 2.1
   main:
