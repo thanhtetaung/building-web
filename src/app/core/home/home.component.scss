@@ -11,6 +11,7 @@
 }
 
 .main-content {
+  background-color: gray;
   max-width: 1000px;
   margin: auto;
 }
@@ -30,7 +31,6 @@ mat-progress-bar {
 
 .main {
   background-color: gray;
-  height: 100%;
   position: relative;
 }
 .content {
@@ -71,8 +71,11 @@ mat-progress-bar {
   -webkit-box-shadow: 0 0 10px  rgba(0,0,0,0.6);
   -o-box-shadow: 0 0 10px  rgba(0,0,0,0.6);
   border-radius: 5px;
-  padding: 54px 100px;
   margin-bottom: 20px;
+}
+
+.form-content, .container {
+  padding: 54px 100px;
 }
 
 .submit-button {
@@ -102,3 +105,35 @@ mat-progress-bar {
     color: #646464;
 }
 
+
+.red {
+  color: #FF0000;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.right-label {
+  position: relative;
+  bottom: 8px;
+}
+
+mat-form-field {
+  width: 80%;
+}
+
+.checkbox-container {
+  padding-top: 18px;
+}
+
+
+.upload-title {
+  height: 50px;
+  background-color: #19609D;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  color: white;
+  text-align: center;
+  padding-top: 13px;
+}

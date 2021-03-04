@@ -4,6 +4,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FileUploadControl, FileUploadValidators } from '@iplab/ngx-file-upload';
 import { BaseComponent } from 'src/app/components/base.component';
+import { Blueprint } from 'src/app/models/blueprint';
+import { FileMeta } from 'src/app/models/file-meta';
 import { UploadResponse } from 'src/app/models/upload-response';
 import { BuildingService } from 'src/app/services/building.service';
 import { HistoryService } from 'src/app/services/history-service';
@@ -17,16 +19,24 @@ import { configuration } from '../../config/configuration';
 })
 export class HomeComponent extends BaseComponent implements OnInit {
 
+  blueprint = new Blueprint();
   progress = 0;
   isUploading = false;
 
-  public uploadedFile: Array<UploadResponse> = [];
+  public uploadedResponses: Array<UploadResponse> = [];
 
   public fileControl = new FileUploadControl(FileUploadValidators.filesLimit(2)).setListVisibility(false);
 
   constructor(private buildingService: BuildingService, router: Router, uiUtil: UiUtil,
     location: Location, historyService: HistoryService) {
     super(uiUtil, router, location, historyService);
+
+    // //dummy
+    // let response = new UploadResponse();
+    // let fileMeta = new FileMeta();
+    // fileMeta.imageUrl = '';
+    // response.fileMetas.push(fileMeta);
+    // this.uploadedResponses.push(response);
   }
 
   ngOnInit(): void {
@@ -34,10 +44,17 @@ export class HomeComponent extends BaseComponent implements OnInit {
     this.fileControl.valueChanges.subscribe(() => {
       if (this.fileControl.value.length > 0) {
         this.isUploading = true;
+        let file = this.fileControl.value[0];
         this.buildingService.upload(this.fileControl.value[0])
         .subscribe((response) => {
           if (response instanceof UploadResponse) {
-            this.uploadedFile.push(response);
+            response.fileName = file.name;
+            response.fileMetas = response.imageList.map((img) => {
+              let fileMeta = new FileMeta();
+              fileMeta.imageUrl = img;
+              return fileMeta;
+            });
+            this.uploadedResponses.push(response);
           } else {
             this.progress = response.progress;
           }
@@ -62,6 +79,12 @@ export class HomeComponent extends BaseComponent implements OnInit {
     return configuration.baseUrl + relativePath + '?access_token=' + localStorage.getItem('accessToken');
   }
 
+  submit() {
 
+  }
+
+  trackByIndex(index: number, object: any) {
+    return index;
+  }
 
 }
