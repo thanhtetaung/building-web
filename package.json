@@ -24,6 +24,7 @@
     "@angular/router": "~11.2.0",
     "@covalent/core": "^3.1.0",
     "@iplab/ngx-file-upload": "^2.0.9",
+    "ngx-lightbox": "^2.2.2",
     "ngx-pagination": "^5.0.0",
     "rxjs": "^6.6.3",
     "rxjs-compat": "^6.6.3",

@@ -8,7 +8,7 @@ import { SharedModule } from '../shared/common/shared.module';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FileUploadModule } from '@iplab/ngx-file-upload';
-
+import { LightboxModule } from 'ngx-lightbox';
 
 @NgModule({
   imports: [
@@ -16,6 +16,7 @@ import { FileUploadModule } from '@iplab/ngx-file-upload';
     SharedModule,
     CommonModule,
     FileUploadModule,
+    LightboxModule
   ],
   declarations: [
     HomeComponent,

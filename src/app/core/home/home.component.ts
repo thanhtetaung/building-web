@@ -1,7 +1,7 @@
-import { Location } from '@angular/common';
+import { DOCUMENT, Location } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, NgForm } from '@angular/forms';
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FileUploadControl, FileUploadValidators } from '@iplab/ngx-file-upload';
 import { BaseComponent } from 'src/app/components/base.component';
@@ -13,6 +13,7 @@ import { BuildingService } from 'src/app/services/building.service';
 import { HistoryService } from 'src/app/services/history-service';
 import { UiUtil } from 'src/app/util/ui-util';
 import { configuration } from '../../config/configuration';
+import { Lightbox } from 'ngx-lightbox';
 
 @Component({
   selector: 'app-home',
@@ -29,10 +30,15 @@ export class HomeComponent extends BaseComponent implements OnInit {
   @ViewChild('blueprintForm', {static: true}) blueprintForm!: NgForm;
   public uploadedResponses: Array<UploadResponse> = [];
 
+  @ViewChild('resultContent')
+  resultContent!: ElementRef;
+
+
   public fileControl = new FileUploadControl(FileUploadValidators.filesLimit(2)).setListVisibility(false);
 
   constructor(private buildingService: BuildingService, router: Router, uiUtil: UiUtil,
-    location: Location, historyService: HistoryService) {
+    location: Location, historyService: HistoryService,
+    @Inject(DOCUMENT) private document: Document, private _lightbox: Lightbox) {
     super(uiUtil, router, location, historyService);
 
     // //dummy
@@ -87,12 +93,16 @@ export class HomeComponent extends BaseComponent implements OnInit {
     if (this.blueprintForm.invalid || this.uploadedResponses.length === 0) {
       return;
     }
-    this.blueprint.files = this.uploadedResponses.map(response => response.path);
+    this.blueprint.files = this.uploadedResponses.map(response => configuration.baseUrl + response.path);
     this.blueprint.fileMetas = this.uploadedResponses.map(response => response.fileMetas.filter(meta => meta.include === true))
     this.buildingService.blueprintAnalysis(this.blueprint)
       .subscribe((res) => {
         this.result = res;
-        console.log(res);
+        setTimeout(()=> {
+          this.resultContent.nativeElement.scrollIntoView();
+        }, 500);
+
+
     }, (e: HttpErrorResponse) => {
       this.uiUtil.showMessage(e.message);
     });
@@ -100,6 +110,13 @@ export class HomeComponent extends BaseComponent implements OnInit {
 
   trackByIndex(index: number, object: any) {
     return index;
+  }
+
+  openImagePreView(url: string) {
+    this._lightbox.open([{
+      src: url,
+      thumb: url
+   }], 0, { showZoom: true });
   }
 
 }

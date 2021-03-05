@@ -171,7 +171,7 @@
               </div>
               <div class='col-5'>
                 <div class='image-border'>
-                  <img [src]='imageUrl(meta.imageUrl)' class='uploaded-image' />
+                  <img [src]='imageUrl(meta.imageUrl)' class='uploaded-image' (click)='openImagePreView(imageUrl(meta.imageUrl))' />
                 </div>
               </div>
               <div class="col-6">
@@ -182,7 +182,7 @@
                       [required]='meta.include'  [id]="'blueprintType' + i" [name]="'blueprintType' + i">
                       <mat-option value="layout_plan">配置図</mat-option>
                       <mat-option value="area_table">面積表</mat-option>
-                      <mat-option value="floor_plan">各階平面図</mat-option>
+                      <mat-option value="floor_plan">平面図</mat-option>
                       <mat-option value="elevation_plan">立面図</mat-option>
                       <mat-option value="cross_section_plan">断面図</mat-option>
                       <mat-option value="joinery_table">建具表</mat-option>
@@ -273,7 +273,7 @@
         </file-upload>
       </div>
 
-      <div class='form-box mt-5' *ngIf="result">
+      <div class='form-box mt-5' [hidden]="!result" #resultContent>
         <div class='container pb-3'>
           <div class='text-center'><h1>解析結果</h1></div>
           <div>
@@ -302,7 +302,7 @@
                 </tr>
                 <tr>
                   <td>建物高さ</td>
-                  <td class='text-right'>第二種低層住居専用地域 {{blueprint.heightOfBuilding}}</td>
+                  <td class='text-right'>{{blueprint.heightOfBuilding}}m</td>
                 </tr>
                 <tr>
                   <td>容積率</td>
@@ -344,7 +344,7 @@
                 </tr> -->
                 <tr>
                   <td>建物高さ</td>
-                  <td class='text-right'>第二種低層住居専用地域 {{result?.building?.heightOfBuilding}}</td>
+                  <td class='text-right'>{{result?.building?.heightOfBuilding}}m</td>
                 </tr>
                 <tr>
                   <td>容積率</td>

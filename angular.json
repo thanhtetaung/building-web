@@ -35,6 +35,7 @@
             ],
             "styles": [
               "src/assets/style/theme.scss",
+              "./node_modules/ngx-lightbox/lightbox.css",
               "src/styles.scss"
             ],
             "scripts": []
