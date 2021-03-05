@@ -1,10 +1,12 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FileUploadControl, FileUploadValidators } from '@iplab/ngx-file-upload';
 import { BaseComponent } from 'src/app/components/base.component';
 import { Blueprint } from 'src/app/models/blueprint';
+import { BlueprintAnalysisResponse } from 'src/app/models/blueprint-analysis-response';
 import { FileMeta } from 'src/app/models/file-meta';
 import { UploadResponse } from 'src/app/models/upload-response';
 import { BuildingService } from 'src/app/services/building.service';
@@ -22,7 +24,9 @@ export class HomeComponent extends BaseComponent implements OnInit {
   blueprint = new Blueprint();
   progress = 0;
   isUploading = false;
+  result: BlueprintAnalysisResponse | undefined;
 
+  @ViewChild('blueprintForm', {static: true}) blueprintForm!: NgForm;
   public uploadedResponses: Array<UploadResponse> = [];
 
   public fileControl = new FileUploadControl(FileUploadValidators.filesLimit(2)).setListVisibility(false);
@@ -80,7 +84,18 @@ export class HomeComponent extends BaseComponent implements OnInit {
   }
 
   submit() {
-
+    if (this.blueprintForm.invalid || this.uploadedResponses.length === 0) {
+      return;
+    }
+    this.blueprint.files = this.uploadedResponses.map(response => response.path);
+    this.blueprint.fileMetas = this.uploadedResponses.map(response => response.fileMetas.filter(meta => meta.include === true))
+    this.buildingService.blueprintAnalysis(this.blueprint)
+      .subscribe((res) => {
+        this.result = res;
+        console.log(res);
+    }, (e: HttpErrorResponse) => {
+      this.uiUtil.showMessage(e.message);
+    });
   }
 
   trackByIndex(index: number, object: any) {

@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { configuration } from '../config/configuration';
+import { Blueprint } from '../models/blueprint';
+import { BlueprintAnalysisResponse } from '../models/blueprint-analysis-response';
 import { UploadResponse } from '../models/upload-response';
 
 @Injectable({
@@ -38,5 +40,10 @@ export class BuildingService {
       }
     }));
 
+  }
+
+  blueprintAnalysis(blueprint: Blueprint): Observable<BlueprintAnalysisResponse> {
+    const promise = this.http.post<BlueprintAnalysisResponse>(configuration.baseUrl + 'blueprintAnalysis', blueprint);
+    return promise;
   }
 }

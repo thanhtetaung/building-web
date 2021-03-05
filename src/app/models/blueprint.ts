@@ -1,3 +1,5 @@
+import { FileMeta } from "./file-meta";
+
 export class Blueprint {
   siteArea!: number;
   totalFloorArea!: number;
@@ -6,11 +8,13 @@ export class Blueprint {
   buildingArea!: number;
   frontalRoadWidth!: number;
   floor!: number;
-  specialRoadXxistence!: boolean;
+  specialRoadExistence!: boolean;
   heightOfBuilding!: number;
   distanceToSpecialRoad!: number;
   useDistricts!: string;
   buildingCoverageRatioDeregulation!: boolean;
   numberOfAboveGroundFloors!: number;
-  numberOfBasementGloors!: number;
+  numberOfBasementFloors!: number;
+  files: Array<string> = [];
+  fileMetas: Array<Array<FileMeta>> = [];
 }
