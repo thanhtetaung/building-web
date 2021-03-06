@@ -1,16 +1,19 @@
 .uploaded-image {
-  width: 150px;
-  height: 150px;
+  width: 250px;
+  height: 250px;
 }
 
 .image-border {
   margin-left: 10px;
   margin-bottom: 20px;
-  width: 150px;
+  width: 250px;
 }
 
 .image-border>img {
-  border: 1px solid gray;
+  box-shadow:  0 0 5px  rgba(0,0,0,0.6);
+  -moz-box-shadow: 0 0 5px  rgba(0,0,0,0.6);
+  -webkit-box-shadow: 0 0 5px  rgba(0,0,0,0.6);
+  -o-box-shadow: 0 0 5px  rgba(0,0,0,0.6);
 }
 
 .main-content {
@@ -163,3 +166,13 @@ td {
   background-color: #EAEAEA;
 }
 
+.remove-box {
+  height: 80px;
+  text-align: right;
+}
+.remove-box>button {
+  margin-top: 13px;
+  margin-right: 25px;
+  width: 250px;
+  height: 40px;
+}

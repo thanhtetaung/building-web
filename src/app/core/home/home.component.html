@@ -152,7 +152,7 @@
 
         </div>
 
-        <div class='form-box' *ngFor='let response of uploadedResponses'>
+        <div class='form-box' *ngFor='let response of uploadedResponses; let j = index'>
           <div class='upload-title'>
             {{response.fileName}}
           </div>
@@ -247,7 +247,10 @@
               </div>
             </div>
           </div>
-
+          <hr>
+          <div class='remove-box'>
+            <button mat-raised-button  (click)='remove(j)'>この図面を破棄する</button>
+          </div>
         </div>
       <div class='upload-box'>
         <p>

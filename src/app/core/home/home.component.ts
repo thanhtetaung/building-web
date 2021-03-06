@@ -119,4 +119,8 @@ export class HomeComponent extends BaseComponent implements OnInit {
    }], 0, { showZoom: true });
   }
 
+  remove(index: number) {
+    this.uploadedResponses.splice(index, 1);
+  }
+
 }
