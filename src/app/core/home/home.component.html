@@ -171,7 +171,8 @@
               </div>
               <div class='col-5'>
                 <div class='image-border'>
-                  <img [src]='imageUrl(meta.imageUrl)' class='uploaded-image' (click)='openImagePreView(imageUrl(meta.imageUrl))' />
+                  <img [src]='imageUrl(meta.imageUrl)' class='uploaded-image' class='page' />
+                  <img src='assets/images/search.png' (click)='openImagePreView(imageUrl(meta.imageUrl))' class='preview'>
                 </div>
               </div>
               <div class="col-6">

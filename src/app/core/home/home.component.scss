@@ -1,19 +1,23 @@
-.uploaded-image {
-  width: 250px;
-  height: 250px;
-}
-
 .image-border {
   margin-left: 10px;
   margin-bottom: 20px;
   width: 250px;
-}
-
-.image-border>img {
-  box-shadow:  0 0 5px  rgba(0,0,0,0.6);
-  -moz-box-shadow: 0 0 5px  rgba(0,0,0,0.6);
-  -webkit-box-shadow: 0 0 5px  rgba(0,0,0,0.6);
-  -o-box-shadow: 0 0 5px  rgba(0,0,0,0.6);
+  position: relative;
+  height: 250px;
+  img.page {
+    width: 250px;
+    height: 250px;
+    box-shadow:  0 0 5px  rgba(0,0,0,0.6);
+    -moz-box-shadow: 0 0 5px  rgba(0,0,0,0.6);
+    -webkit-box-shadow: 0 0 5px  rgba(0,0,0,0.6);
+    -o-box-shadow: 0 0 5px  rgba(0,0,0,0.6);
+  }
+  img.preview {
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    cursor: pointer;
+  }
 }
 
 .main-content {

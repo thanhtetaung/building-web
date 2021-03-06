@@ -42,11 +42,11 @@ export class HomeComponent extends BaseComponent implements OnInit {
     super(uiUtil, router, location, historyService);
 
     // //dummy
-    // let response = new UploadResponse();
-    // let fileMeta = new FileMeta();
-    // fileMeta.imageUrl = '';
-    // response.fileMetas.push(fileMeta);
-    // this.uploadedResponses.push(response);
+    let response = new UploadResponse();
+    let fileMeta = new FileMeta();
+    fileMeta.imageUrl = '';
+    response.fileMetas.push(fileMeta);
+    this.uploadedResponses.push(response);
   }
 
   ngOnInit(): void {
