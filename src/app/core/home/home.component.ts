@@ -59,7 +59,7 @@ export class HomeComponent extends BaseComponent implements OnInit {
         .subscribe((response) => {
           if (response instanceof UploadResponse) {
             response.fileName = file.name;
-            response.fileMetas = response.imageList.map((img) => {
+            response.fileMetaInfos = response.imageList.map((img) => {
               let fileMeta = new FileMeta();
               fileMeta.imageUrl = img;
               return fileMeta;
@@ -94,7 +94,7 @@ export class HomeComponent extends BaseComponent implements OnInit {
       return;
     }
     this.blueprint.files = this.uploadedResponses.map(response => configuration.baseUrl + response.path);
-    this.blueprint.fileMetas = this.uploadedResponses.map(response => response.fileMetas.filter(meta => meta.include === true))
+    this.blueprint.fileMetaInfos = this.uploadedResponses.map(response => response.fileMetaInfos.filter(meta => meta.include === true))
     this.buildingService.blueprintAnalysis(this.blueprint)
       .subscribe((res) => {
         this.result = res;

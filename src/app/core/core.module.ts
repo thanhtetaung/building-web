@@ -9,6 +9,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { ProfileComponent } from './profile/profile.component';
 import { FileUploadModule } from '@iplab/ngx-file-upload';
 import { LightboxModule } from 'ngx-lightbox';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import { LightboxModule } from 'ngx-lightbox';
     LoginComponent,
     ChangePasswordComponent,
     ProfileComponent,
+    FooterComponent,
   ],
   exports: [
     HomeComponent,

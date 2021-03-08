@@ -39,7 +39,6 @@
 
 
     <div class='main-content'>
-      <div style='height: 40px;'></div>
       <div class='form-box'>
         <div class="container">
           <h3 class='bold'>基本情報を入力してください。</h3>
@@ -195,7 +194,7 @@
           {{response.fileName}}
         </div>
         <div class='form-content'>
-          <div class='row' *ngFor='let meta of response.fileMetas; trackBy: trackByIndex; let i = index'>
+          <div class='row' *ngFor='let meta of response.fileMetaInfos; trackBy: trackByIndex; let i = index'>
             <div class='col-1'>
               <section>
                 <mat-checkbox
@@ -401,13 +400,12 @@
           </div>
         </div>
       </div>
-
-      <div style='height: 200px;'></div>
     </div>
 
     <div class='box'>
       <button type="submit" class='submit-button'
       mat-raised-button color="primary">解析を始める</button>
+      <app-footer></app-footer>
     </div>
   </div>
 </form>

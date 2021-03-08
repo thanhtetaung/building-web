@@ -5,5 +5,5 @@ export class UploadResponse {
   path!: string;
   mediaType!: string;
   imageList: Array<string> = [];
-  fileMetas: Array<FileMeta> = [];
+  fileMetaInfos: Array<FileMeta> = [];
 }

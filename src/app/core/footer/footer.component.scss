@@ -1,0 +1,26 @@
+div.footer {
+  background-color: #2E2E2E;
+  height: 90px;
+  ul {
+    list-style-type: none;
+    margin: 0 auto;
+    width: 603px;
+    padding: 0;
+    overflow: hidden;
+    li {
+      float: left;
+      color: white;
+      a {
+        height: 90px;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 35px 20px;
+      }
+      a.husky {
+        padding-top: 30px;
+      }
+    }
+  }
+}
+

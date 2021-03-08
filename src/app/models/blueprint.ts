@@ -16,5 +16,5 @@ export class Blueprint {
   numberOfAboveGroundFloors!: number;
   numberOfBasementFloors!: number;
   files: Array<string> = [];
-  fileMetas: Array<Array<FileMeta>> = [];
+  fileMetaInfos: Array<Array<FileMeta>> = [];
 }

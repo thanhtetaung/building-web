@@ -24,6 +24,8 @@
   background-color: gray;
   max-width: 1000px;
   margin: auto;
+  box-sizing: border-box;
+  padding-top: 40px;
 }
 
 .progress-wrapper {
@@ -42,6 +44,8 @@ mat-progress-bar {
 .main {
   background-color: gray;
   position: relative;
+  box-sizing: border-box;
+  padding-bottom: 300px;
 }
 .content {
   background-color: gray;
@@ -52,7 +56,6 @@ mat-progress-bar {
   background-color: white;
   text-align: center;
   height: auto;
-  padding-bottom: 40px;
   box-shadow:  0 0 10px  rgba(0,0,0,0.6);
   -moz-box-shadow: 0 0 10px  rgba(0,0,0,0.6);
   -webkit-box-shadow: 0 0 10px  rgba(0,0,0,0.6);
@@ -91,7 +94,7 @@ mat-progress-bar {
 
 .submit-button {
   height: 60px;
-  margin-top: 45px;
+  margin:45px 0;
   padding: 12px 90px;
   background-color: #337CD1;
 }
