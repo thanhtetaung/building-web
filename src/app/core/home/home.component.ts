@@ -123,4 +123,12 @@ export class HomeComponent extends BaseComponent implements OnInit {
     this.uploadedResponses.splice(index, 1);
   }
 
+  range(range: number) {
+    if (this.blueprint.floorAreas.length > range) {
+      this.blueprint.floorAreas.splice(range);
+    }
+
+    return new Array(range);
+  }
+
 }

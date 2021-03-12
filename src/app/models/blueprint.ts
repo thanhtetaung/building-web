@@ -13,9 +13,9 @@ export class Blueprint {
   distanceToSpecialRoad!: number;
   useDistricts!: string;
   buildingCoverageRatioDeregulation!: boolean;
-  numberOfAboveGroundFloors!: number;
+  numberOfAboveGroundFloors: number = 1;
   numberOfBasementFloors!: number;
   files: Array<string> = [];
   fileMetaInfos: Array<Array<FileMeta>> = [];
-  floorAreas: Array<number> =[ 30.9 ];
+  floorAreas: Array<number> =[];
 }

@@ -80,7 +80,7 @@ mat-progress-bar {
   padding: 54px 100px;
 }
 
-.form-box {
+.form-box, .image-form-box {
   background-color: white;
   box-shadow:  0 0 10px  rgba(0,0,0,0.6);
   -moz-box-shadow: 0 0 10px  rgba(0,0,0,0.6);
@@ -289,7 +289,26 @@ td {
 
   }
 }
+.form-box .col-6,
+.gray-box .col-6 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  
+}
 
+.gray-box {
+  background-color: #f9f9f9;
+  padding-top: 20px;
+  position: relative;
+  border-radius: 5px;
+  -webkit-box-shadow: 1px 1px 5px #fafafaa9;
+          box-shadow: 1px 1px 5px #fafafaa9;  
+  margin-right: 20px;
+}
 
 
 
