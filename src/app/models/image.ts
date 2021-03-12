@@ -4,5 +4,5 @@ export class Image {
  detectedArea!: number;
  fixtureSymbolImg!: number;
  blueprintType!: string;
- fixtureSymbols!: Symbol;
+ fixtureSymbols!: Array<Symbol>;
 }
