@@ -24,7 +24,8 @@
   background-color: gray;
   max-width: 1000px;
   margin: auto;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding-top: 40px;
 }
 
@@ -44,7 +45,8 @@ mat-progress-bar {
 .main {
   background-color: gray;
   position: relative;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding-bottom: 300px;
 }
 .content {
@@ -93,9 +95,9 @@ mat-progress-bar {
 }
 
 .submit-button {
-  height: 60px;
-  margin:45px 0;
-  padding: 12px 90px;
+  height: 40px;
+  margin: 18px 0;
+  padding: 0px 25px;
   background-color: #337CD1;
 }
 
