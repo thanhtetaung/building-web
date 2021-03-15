@@ -332,244 +332,243 @@
       </div>
 
       <div  [hidden]="!result">
-      <div class='form-box mt-5' [hidden]="!result" #resultContent>
-        <div class='container pb-3'>
-          <div class='text-center'><h1>解析結果</h1></div>
-          <div>
-            <h1>入力情報</h1>
-            <table class='table'>
-              <tbody>
-                <tr>
-                  <td>敷地面積</td>
-                  <td class='text-right'>{{blueprint.siteArea}}㎡</td>
-                </tr>
-                <tr>
-                  <td>延床面積</td>
-                  <td class='text-right'>{{blueprint.totalFloorArea}}㎡</td>
-                </tr>
-                <tr>
-                  <td>建築面積</td>
-                  <td class='text-right'>{{blueprint.buildingArea}}㎡</td>
-                </tr>
-                <tr>
-                  <td>地上階数</td>
-                  <td class='text-right'>{{blueprint.numberOfAboveGroundFloors}}階建</td>
-                </tr>
-                <tr>
-                  <td>地下階数</td>
-                  <td class='text-right'>{{blueprint.numberOfBasementFloors}}m</td>
-                </tr>
-                <tr>
-                  <td>建物高さ</td>
-                  <td class='text-right'>{{blueprint.heightOfBuilding}}m</td>
-                </tr>
-                <tr>
-                  <td>容積率</td>
-                  <td class='text-right'>{{blueprint.floorAreaRatio}}%  延べ床面積 / 敷地面積</td>
-                </tr>
-                <!-- <tr>
-                  <td>容積率</td>
-                  <td class='text-right'>{{blueprint.buildingCoverageRatioDeregulation}}%  建築面積 / 敷地面積</td>
-                </tr> -->
-              </tbody>
-            </table>
+        <div class='form-box mt-5' #resultContent>
+          <div class='container pb-3'>
+            <div class='text-center'><h1>解析結果</h1></div>
+            <div>
+              <h1>入力情報</h1>
+              <table class='table'>
+                <tbody>
+                  <tr>
+                    <td>敷地面積</td>
+                    <td class='text-right'>{{blueprint.siteArea}}㎡</td>
+                  </tr>
+                  <tr>
+                    <td>延床面積</td>
+                    <td class='text-right'>{{blueprint.totalFloorArea}}㎡</td>
+                  </tr>
+                  <tr>
+                    <td>建築面積</td>
+                    <td class='text-right'>{{blueprint.buildingArea}}㎡</td>
+                  </tr>
+                  <tr>
+                    <td>地上階数</td>
+                    <td class='text-right'>{{blueprint.numberOfAboveGroundFloors}}階建</td>
+                  </tr>
+                  <tr>
+                    <td>地下階数</td>
+                    <td class='text-right'>{{blueprint.numberOfBasementFloors}}m</td>
+                  </tr>
+                  <tr>
+                    <td>建物高さ</td>
+                    <td class='text-right'>{{blueprint.heightOfBuilding}}m</td>
+                  </tr>
+                  <tr>
+                    <td>容積率</td>
+                    <td class='text-right'>{{blueprint.floorAreaRatio}}%  延べ床面積 / 敷地面積</td>
+                  </tr>
+                  <!-- <tr>
+                    <td>容積率</td>
+                    <td class='text-right'>{{blueprint.buildingCoverageRatioDeregulation}}%  建築面積 / 敷地面積</td>
+                  </tr> -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class='container pt-0'>
+            <div>
+              <h1>AIの識別結果</h1>
+              <table class='table'>
+                <tbody>
+                  <!-- <tr>
+                    <td>敷地面積</td>
+                    <td class='text-right'>{{result?.buildingSite?.siteArea}}㎡</td>
+                  </tr> -->
+                  <tr>
+                    <td>延床面積</td>
+                    <td class='text-right'>{{result?.building?.totalFloorArea}}㎡</td>
+                  </tr>
+                  <tr>
+                    <td>建築面積</td>
+                    <td class='text-right'>{{result?.building?.buildingArea}}㎡</td>
+                  </tr>
+                  <!-- <tr>
+                    <td>地上階数</td>
+                    <td class='text-right'>{{result?.buildingSite?.numberOfAboveGroundFloors}}階建</td>
+                  </tr>
+                  <tr>
+                    <td>地下階数</td>
+                    <td class='text-right'>{{result?.buildingSite?.numberOfBasementFloors}}m</td>
+                  </tr> -->
+                  <!-- <tr>
+                    <td>建物高さ</td>
+                    <td class='text-right'>{{result?.building?.heightOfBuilding}}m</td>
+                  </tr> -->
+                  <tr>
+                    <td>容積率</td>
+                    <td class='text-right'>{{result?.building?.floorAreaRatio}}%  延べ床面積 / 敷地面積</td>
+                  </tr>
+                  <tr>
+                    <td>建ぺい率</td>
+                    <td class='text-right'>{{result?.building?.buildingCoverageRatio}}%  建築面積 / 敷地面積</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 
-        <div class='container pt-0'>
-          <div>
-            <h1>AIの識別結果</h1>
-            <table class='table'>
-              <tbody>
-                <!-- <tr>
-                  <td>敷地面積</td>
-                  <td class='text-right'>{{result?.buildingSite?.siteArea}}㎡</td>
-                </tr> -->
-                <tr>
-                  <td>延床面積</td>
-                  <td class='text-right'>{{result?.building?.totalFloorArea}}㎡</td>
-                </tr>
-                <tr>
-                  <td>建築面積</td>
-                  <td class='text-right'>{{result?.building?.buildingArea}}㎡</td>
-                </tr>
-                <!-- <tr>
-                  <td>地上階数</td>
-                  <td class='text-right'>{{result?.buildingSite?.numberOfAboveGroundFloors}}階建</td>
-                </tr>
-                <tr>
-                  <td>地下階数</td>
-                  <td class='text-right'>{{result?.buildingSite?.numberOfBasementFloors}}m</td>
-                </tr> -->
-                <!-- <tr>
-                  <td>建物高さ</td>
-                  <td class='text-right'>{{result?.building?.heightOfBuilding}}m</td>
-                </tr> -->
-                <tr>
-                  <td>容積率</td>
-                  <td class='text-right'>{{result?.building?.floorAreaRatio}}%  延べ床面積 / 敷地面積</td>
-                </tr>
-                <tr>
-                  <td>建ぺい率</td>
-                  <td class='text-right'>{{result?.building?.buildingCoverageRatio}}%  建築面積 / 敷地面積</td>
-                </tr>
-              </tbody>
-            </table>
+        <!-- HM Start -->
+        <!-- result 2 Start-->
+        <div class='form-box mt-5' #resultContent>
+          <div class='container pb-3'>
+            <div class='text-center'><h1>容積率解析結果</h1></div>
+            <div>
+              <h1>入力情報</h1>
+              <table class='table'>
+                <tbody>
+                  <tr>
+                    <td>用途地域</td>
+                    <td class='text-right'>{{useDistrictsMap[blueprint.useDistricts]}}</td>
+                  </tr>
+                  <tr>
+                    <td>指定容積率</td>
+                    <td class='text-right'>{{blueprint.floorAreaRatio}}%</td>
+                  </tr>
+                  <tr>
+                    <td>前面道路の幅員</td>
+                    <td class='text-right'>{{blueprint.frontalRoadWidth}}m</td>
+                  </tr>
+                  <tr>
+                    <td>特定道路の有無</td>
+                    <td class='text-right'>{{blueprint.specialRoadExistence ? specialRoadExistenceMap[blueprint.specialRoadExistence.toString()] : ''}}TODO1</td>
+                  </tr>
+                  <tr>
+                    <td>敷地から特定道路までの距離</td>
+                    <td class='text-right'>{{blueprint.distanceToSpecialRoad}}m</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class='container pt-0'>
+            <div>
+              <h1>AIの識別結果</h1>
+              <h3>敷地から特定道路までの距離</h3>
+              <h4>1. 用途地域に基づく法定乗数</h4>
+              <table class='table'>
+                <tbody>
+                  <tr>
+                    <td>法定乗数</td>
+                    <td class='text-right'>{{result?.buildingSite?.floorAreaRatioLegalMultiplier}}</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <h4>2. 前面道路の幅員および特定道路に基づいた算出</h4>
+              <table class='table'>
+                <tbody>
+                  <tr>
+                    <td>(前面道路の幅員 + 加算値) × 法定乗数 × 100</td>
+                    <td class='text-right'>{{result?.buildingSite?.floorAreaRatioLimit}}%</td>
+                  </tr>
+                  <tr>
+                    <td>加算値  (12 - 前面道路の幅員) × ( 70 - 特定道路までの距離) / 70</td>
+                    <td class='text-right'>{{result?.buildingSite?.floorAreaRatioLimitAddingValue}}</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <h4>3. 指定容積率と比較し、小さい方を採用</h4>
+              <table class='table'>
+                <tbody>
+                  <tr>
+                    <td>容積率の上限</td>
+                    <td class='text-right'>{{result?.buildingSite?.floorAreaRatioLimit}}%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
-      </div>
+        <!-- result 2 End-->
 
-      <!-- HM Start -->
-      <!-- result 2 Start-->
-      <div class='form-box mt-5' #resultContent>
-        <div class='container pb-3'>
-          <div class='text-center'><h1>容積率解析結果</h1></div>
-          <div>
-            <h1>入力情報</h1>
-            <table class='table'>
-              <tbody>
-                <tr>
-                  <td>用途地域</td>
-                  <td class='text-right'>{{useDistrictsMap.get(blueprint.useDistricts)}}</td>
-                </tr>
-                <tr>
-                  <td>指定容積率</td>
-                  <td class='text-right'>{{blueprint.floorAreaRatio}}%</td>
-                </tr>
-                <tr>
-                  <td>前面道路の幅員</td>
-                  <td class='text-right'>{{blueprint.frontalRoadWidth}}m</td>
-                </tr>
-                <tr>
-                  <td>特定道路の有無</td>
-                  <td class='text-right'>{{specialRoadExistenceMap.get((blueprint.specialRoadExistence))}}TODO1</td>
-                </tr>
-                <tr>
-                  <td>敷地から特定道路までの距離</td>
-                  <td class='text-right'>{{blueprint.distanceToSpecialRoad}}m</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+        <!-- result 3 Start-->
+        <div class='form-box mt-5' #resultContent>
+            <div class='container2 pb-3'>
+              <div class='text-center'>
+                <h1>建具符号カウント結果</h1>
+              </div>
 
-        <div class='container pt-0'>
-          <div>
-            <h1>AIの識別結果</h1>
-            <h3>敷地から特定道路までの距離</h3>
-            <h4>1. 用途地域に基づく法定乗数</h4>
-            <table class='table'>
-              <tbody>
-                <tr>
-                  <td>法定乗数</td>
-                  <td class='text-right'>{{result?.buildingSite?.floorAreaRatioLegalMultiplier}}</td>
-                </tr>
-              </tbody>
-            </table>
+              <div class="row" *ngFor='let fixtureImg of result?.fixtureSymbolDrawnImgs;' >
+                <h3>「 {{blueprintTypeMap[fixtureImg.blueprintType]}}」 内の建具符号数量</h3>
+                <div class="col-4">
 
-            <h4>2. 前面道路の幅員および特定道路に基づいた算出</h4>
-            <table class='table'>
-              <tbody>
-                <tr>
-                  <td>(前面道路の幅員 + 加算値) × 法定乗数 × 100</td>
-                  <td class='text-right'>{{result?.buildingSite?.floorAreaRatioLimit}}%</td>
-                </tr>
-                <tr>
-                  <td>加算値  (12 - 前面道路の幅員) × ( 70 - 特定道路までの距離) / 70</td>
-                  <td class='text-right'>{{result?.buildingSite?.floorAreaRatioLimitAddingValue}}</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <h4>3. 指定容積率と比較し、小さい方を採用</h4>
-            <table class='table'>
-              <tbody>
-                <tr>
-                  <td>容積率の上限</td>
-                  <td class='text-right'>{{result?.buildingSite?.floorAreaRatioLimit}}%</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-      <!-- result 2 End-->
-
-      <!-- result 3 Start-->
-       <div class='form-box mt-5' #resultContent>
-          <div class='container2 pb-3'>
-            <div class='text-center'>
-              <h1>建具符号カウント結果</h1>
+                  <table class='table'>
+                    <thead>
+                      <tr>
+                        <th>建具符号名</th>
+                        <th>数量</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor='let fs of fixtureImg.fixtureSymbols'>
+                        <td>{{fs["name"]}}</td>
+                        <td>{{fs["num"]}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="col-8">
+                  <div class="result-image-wrapper">
+                    <h3>TODO2</h3>
+                    <img [src]="fixtureImg.img" class="page result-image" />
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div class="row" *ngFor='let fixtureImg of result?.fixtureSymbolDrawnImgs;' >
-              <h3>「 {{blueprintTypeMap.get(fixtureImg.blueprintType)}}」 内の建具符号数量</h3>
+        </div>
+        <!-- result 3 End-->
+
+        <!-- result 4 Start-->
+        <div class="form-box mt-2" #resultContent>
+          <div class="container2">
+            <div class="text-center">
+              <h1>面積認識結果</h1>
+            </div>
+
+            <div class="row" *ngFor='let externalImg of result?.externalShapeDrawnImgs;'>
+              <h3>面積認識    「{{blueprintTypeMap[externalImg.blueprintType]}}」</h3>
               <div class="col-4">
 
-                <table class='table'>
+                <table class="table">
                   <tbody>
                     <tr>
-                      <th>建具符号名</th>
-                      <th>数量</th>
-                    </tr>
-                    <tr *ngFor='let fs of fixtureImg.fixtureSymbols'>
-                      <td>{{fs["name"]}}</td>
-                      <td>{{fs["num"]}}</td>
+                      <td>図の面積</td>
+                      <td>{{externalImg.detectedArea}}㎡</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
               <div class="col-8">
-                <div class='image-border2'>
-                  <h3>TODO2</h3>
-                  <img [src]='imageUrl(blueprint.dummyFixtureImgURL)' class='uploaded-image' class='page' />
-
+                <div class="result-image-wrapper">
+                  <h3>TODO3</h3>
+                  <img [src]="externalImg.img" class="result-image page"/>
                 </div>
               </div>
             </div>
           </div>
 
         </div>
-      <!-- result 3 End-->
-
-      <!-- result 4 Start-->
-      <div class='form-box mt-2' #resultContent>
-        <div class='container2'>
-          <div class='text-center'>
-            <h1>面積認識結果</h1>
-          </div>
-
-          <div class="row" *ngFor='let externalImg of result?.externalShapeDrawnImgs;'>
-            <h3>面積認識    「{{blueprintTypeMap.get(externalImg.blueprintType)}}」</h3>
-            <div class="col-4">
-
-              <table class='table'>
-                <tbody>
-                  <tr>
-                    <td>図の面積</td>
-                    <td>{{externalImg.detectedArea}}㎡</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="col-8">
-              <div class='image-border2'>
-                <h3>TODO3</h3>
-                <img [src]='blueprint.dummyExternalImgURL' class='uploaded-image' class='page' />
-
-              </div>
-            </div>
-          </div>
-        </div>
-
+        <!-- result 4 End-->
+        <!-- HM END -->
       </div>
-      <!-- result 4 End-->
-      <!-- HM END -->
     </div>
-  </div>
 
-    <div class='box'>
-      <button type="submit" class='submit-button'
+    <div class="box">
+      <button type="submit" class="submit-button"
       mat-raised-button color="primary">解析を始める</button>
       <app-footer></app-footer>
     </div>

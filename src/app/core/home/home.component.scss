@@ -20,15 +20,15 @@
   }
 }
 
-.image-border2 {
+.result-image-wrapper {
   margin-left: 10px;
   margin-bottom: 20px;
-  width: 550px;
+  width: 100%;
   position: relative;
-  height: 550px;
+  height: auto;
   img.page {
-    width: 550px;
-    height: 550px;
+    width: 100%;
+    height: auto;
     box-shadow:  0 0 5px  rgba(0,0,0,0.6);
     -moz-box-shadow: 0 0 5px  rgba(0,0,0,0.6);
     -webkit-box-shadow: 0 0 5px  rgba(0,0,0,0.6);
@@ -340,6 +340,11 @@ td {
   -webkit-box-shadow: 1px 1px 5px #fafafaa9;
           box-shadow: 1px 1px 5px #fafafaa9;
   margin-right: 20px;
+}
+
+.result-image {
+  width: 100%;
+  height: auto;
 }
 
 

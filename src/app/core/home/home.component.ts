@@ -13,6 +13,7 @@ import { BuildingService } from 'src/app/services/building.service';
 import { HistoryService } from 'src/app/services/history-service';
 import { UiUtil } from 'src/app/util/ui-util';
 import { configuration } from '../../config/configuration';
+import { valueTextMap } from '../../config/const';
 import { Lightbox } from 'ngx-lightbox';
 
 @Component({
@@ -27,9 +28,9 @@ export class HomeComponent extends BaseComponent implements OnInit {
   isUploading = false;
   result: BlueprintAnalysisResponse | undefined;
 
-  useDistrictsMap : Map<string, string> = new Map<string, string>();
-  specialRoadExistenceMap : Map<boolean, string> = new Map<boolean, string>();
-  blueprintTypeMap : Map<string, string> = new Map<string, string>();
+  useDistrictsMap = valueTextMap.useDistricts;
+  specialRoadExistenceMap = valueTextMap.specialRoadExistence;
+  blueprintTypeMap = valueTextMap.blueprintType;
 
 
   @ViewChild('blueprintForm', {static: true}) blueprintForm!: NgForm;
@@ -55,35 +56,6 @@ export class HomeComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.specialRoadExistenceMap.set(true, "有");
-    this.specialRoadExistenceMap.set(false, "無");
-    this.useDistrictsMap.set("first_class_low_rise_residential_area", "第一種低層住居専用地域");
-    this.useDistrictsMap.set("type_two_low_rise_residential_area", "第二種低層住居専用地域");
-    this.useDistrictsMap.set("First_middle_high_rise_residential_area", "第一種中高層住居専用地域");
-    this.useDistrictsMap.set("type_two_middle_high_rise_residential_area", "第二種中高層住居専用地域");
-    this.useDistrictsMap.set("First_class_residential_area", "第一種住居地域");
-    this.useDistrictsMap.set("type_two_class_residential_area", "第二種住居地域");
-    this.useDistrictsMap.set("semi_residential_area", "準住居地域");
-    this.useDistrictsMap.set("neighboring_commercial_area", "近隣商業地域");
-    this.useDistrictsMap.set("commercial_area", "商業地域");
-    this.useDistrictsMap.set("semi_industrial_area", "準工業地域");
-    this.useDistrictsMap.set("industrial_area", "工業地域");
-    this.useDistrictsMap.set("designated_industrial_area", "工業専用地域");
-    this.blueprintTypeMap.set("layout_plan","配置図");
-    this.blueprintTypeMap.set("area_table","面積表");
-    this.blueprintTypeMap.set("floor_plan","平面図");
-    this.blueprintTypeMap.set("elevation_plan","立面図");
-    this.blueprintTypeMap.set("cross_section_plan","断面図");
-    this.blueprintTypeMap.set("joinery_table","建具表");
-    this.blueprintTypeMap.set("site_quadrature_plan","敷地求積図");
-    this.blueprintTypeMap.set("guide_plan","案内図");
-    this.blueprintTypeMap.set("finish_table","仕上表");
-    this.blueprintTypeMap.set("lighting_calculation_table","採光算定表");
-    this.blueprintTypeMap.set("sunshine_plan","日影図");
-    this.blueprintTypeMap.set("air_conditioning_ventilation_sanitation_equipment_plan","空調換気衛生設備図");
-    this.blueprintTypeMap.set("construction_plan","構造図");
-    this.blueprintTypeMap.set("electrical_equipment_plan","電気設備図");
-
     this.fileControl.setListVisibility(false);
     this.fileControl.valueChanges.subscribe(() => {
       if (this.fileControl.value.length > 0) {
@@ -132,6 +104,9 @@ export class HomeComponent extends BaseComponent implements OnInit {
     this.buildingService.blueprintAnalysis(this.blueprint)
       .subscribe((res) => {
         this.result = res;
+        // dummy img override
+        this.result.externalShapeDrawnImgs.forEach(img => img.img = 'assets/images/0.png')
+        this.result.fixtureSymbolDrawnImgs.forEach(img => img.img = 'assets/images/1.png')
         setTimeout(()=> {
           this.resultContent.nativeElement.scrollIntoView();
         }, 500);
