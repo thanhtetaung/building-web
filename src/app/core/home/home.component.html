@@ -267,17 +267,17 @@
                 </mat-form-field>
               </div>
 
-              <!-- <div *ngIf="meta.blueprintType === 'floor_plan'">
+              <div *ngIf="meta.blueprintType === 'area_table' || meta.blueprintType === 'floor_plan'">
                 <mat-form-field class="full-width-input" appearance='outline'>
                   <mat-label>階</mat-label>
                   <input matInput placeholder="階" [(ngModel)]='meta.floors' [disabled]='!meta.include'
-                      [required]="meta.blueprintType === 'floor_plan'" type="number"
+                      [required]="meta.blueprintType === 'area_table' || meta.blueprintType === 'floor_plan'" type="number"
                       [name]="'floors' + i"
                       [id]="'floors' + i"
                       #floors="ngModel">
                 </mat-form-field>
-              </div> -->
-              <div *ngIf="meta.blueprintType === 'area_table' || meta.blueprintType === 'floor_plan'">
+              </div>
+              <!-- <div *ngIf="meta.blueprintType === 'area_table' || meta.blueprintType === 'floor_plan'">
                 <mat-form-field class="full-width-input" appearance='outline'>
                   <mat-label>床面積</mat-label>
                   <input matInput placeholder="床面積" [(ngModel)]='meta.area' [disabled]='!meta.include'
@@ -287,7 +287,7 @@
                       #area="ngModel">
                   <div matSuffix class='right-label' >㎡</div>
                 </mat-form-field>
-              </div>
+              </div> -->
               <!-- <div *ngIf="meta.blueprintType === 'floor_plan'">
                 <mat-form-field class="full-width-input" appearance='outline'>
                   <mat-label>部屋数</mat-label>
@@ -441,7 +441,7 @@
                   </tr>
                   <tr>
                     <td>特定道路の有無</td>
-                    <td class='text-right'>{{blueprint.specialRoadExistence ? specialRoadExistenceMap[blueprint.specialRoadExistence.toString()] : ''}}TODO1</td>
+                    <td class='text-right'>{{blueprint.specialRoadExistence ? specialRoadExistenceMap[blueprint.specialRoadExistence.toString()] : ''}}</td>
                   </tr>
                   <tr>
                     <td>敷地から特定道路までの距離</td>
@@ -522,7 +522,6 @@
                 </div>
                 <div class="col-8">
                   <div class="result-image-wrapper">
-                    <h3>TODO2</h3>
                     <img [src]="fixtureImg.img" class="page result-image" />
                   </div>
                 </div>
@@ -554,7 +553,6 @@
               </div>
               <div class="col-8">
                 <div class="result-image-wrapper">
-                  <h3>TODO3</h3>
                   <img [src]="externalImg.img" class="result-image page"/>
                 </div>
               </div>

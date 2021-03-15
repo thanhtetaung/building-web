@@ -105,8 +105,8 @@ export class HomeComponent extends BaseComponent implements OnInit {
       .subscribe((res) => {
         this.result = res;
         // dummy img override
-        this.result.externalShapeDrawnImgs.forEach(img => img.img = 'assets/images/0.png')
-        this.result.fixtureSymbolDrawnImgs.forEach(img => img.img = 'assets/images/1.png')
+        this.result.externalShapeDrawnImgs.forEach(img => img.img = 'assets/images/4.jpg')
+        this.result.fixtureSymbolDrawnImgs.forEach(img => img.img = 'assets/images/4.jpg')
         setTimeout(()=> {
           this.resultContent.nativeElement.scrollIntoView();
         }, 500);
