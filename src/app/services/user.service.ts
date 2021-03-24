@@ -17,7 +17,7 @@ export class UserService {
       'password': password
     };
     return this.http.post<User>(
-      configuration.baseUrl + 'login',
+      configuration.baseUrl + 'v1/login',
       body
     );
 
@@ -25,7 +25,7 @@ export class UserService {
 
   logout(): Observable<void> {
     return this.http.get<void>(
-      configuration.baseUrl + 'logout'
+      configuration.baseUrl + 'v1/logout'
     );
 
   }
@@ -38,7 +38,7 @@ export class UserService {
       'lastName': user.lastName,
     };
     return this.http.post<User>(
-      configuration.baseUrl + 'register',
+      configuration.baseUrl + 'v1/register',
       body
     );
 
@@ -46,7 +46,7 @@ export class UserService {
 
   profile(): Observable<User> {
     return this.http.get<User>(
-      configuration.baseUrl + 'profile'
+      configuration.baseUrl + 'v1/profile'
     );
 
   }
@@ -57,7 +57,7 @@ export class UserService {
       'lastName': user.lastName,
     };
     return this.http.put<User>(
-      configuration.baseUrl + 'profile',
+      configuration.baseUrl + 'v1/profile',
       body
     );
 
@@ -69,7 +69,7 @@ export class UserService {
       'newPassword': newPassword
     };
 
-    const promise = this.http.post<void>(configuration.baseUrl + 'changePassword', body);
+    const promise = this.http.post<void>(configuration.baseUrl + 'v1/changePassword', body);
     return promise;
   }
 

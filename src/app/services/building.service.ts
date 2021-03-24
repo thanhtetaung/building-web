@@ -18,7 +18,7 @@ export class BuildingService {
     const formData = new FormData();
     formData.append('file', file);
     return this.http.post<UploadResponse>(
-      configuration.baseUrl + 'uploadDesign',
+      configuration.baseUrl + 'v1/uploadDesign',
       formData,
       {
         reportProgress: true,
@@ -43,7 +43,7 @@ export class BuildingService {
   }
 
   blueprintAnalysis(blueprint: Blueprint): Observable<BlueprintAnalysisResponse> {
-    const promise = this.http.post<BlueprintAnalysisResponse>(configuration.baseUrl + 'blueprintAnalysis', blueprint);
+    const promise = this.http.post<BlueprintAnalysisResponse>(configuration.baseUrl + 'v1/blueprintAnalysis', blueprint);
     return promise;
   }
 }

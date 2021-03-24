@@ -92,7 +92,7 @@ export class HomeComponent extends BaseComponent implements OnInit {
   }
 
   imageUrl(relativePath: string) {
-    return configuration.baseUrl + relativePath + '?access_token=' + localStorage.getItem('accessToken');
+    return configuration.baseUrl + "v1/" + relativePath + '?dpi=400&access_token=' + localStorage.getItem('accessToken');
   }
 
   submit() {

@@ -5,6 +5,7 @@ export class Blueprint {
   totalFloorArea!: number;
   fireZone!: string;
   floorAreaRatio!: number;
+  buildingCoverageRatio!: number;
   buildingArea!: number;
   frontalRoadWidth!: number;
   floor!: number;

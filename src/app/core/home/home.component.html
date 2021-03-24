@@ -66,8 +66,8 @@
 
             <div class="col-6">
               <mat-form-field class="full-width-input" appearance='outline'>
-                <mat-label>延床面積</mat-label>
-                <input matInput placeholder="延床面積" [(ngModel)]='blueprint.totalFloorArea'
+                <mat-label>延べ面積</mat-label>
+                <input matInput placeholder="延べ面積" [(ngModel)]='blueprint.totalFloorArea'
                       required type="number"
                       id="totalFloorArea" name="totalFloorArea" #totalFloorArea="ngModel">
                 <div matSuffix class='right-label' >㎡</div>
@@ -96,11 +96,11 @@
 
             <div class="col-6">
               <mat-form-field class="full-width-input" appearance='outline'>
-                <mat-label>前面道路の幅員</mat-label>
-                <input matInput placeholder="前面道路の幅員" [(ngModel)]='blueprint.frontalRoadWidth'
-                    type="number"
-                    id="frontalRoadWidth" name="frontalRoadWidth" #frontalRoadWidth="ngModel">
-                <div matSuffix class='right-label' >m</div>
+                <mat-label>指定建ペイ率</mat-label>
+                <input matInput placeholder="指定建ペイ率" [(ngModel)]='blueprint.buildingCoverageRatio'
+                    required type="number"
+                    id="buildingCoverageRatio" name="buildingCoverageRatio" #buildingCoverageRatio="ngModel">
+                <div matSuffix class='right-label' >%</div>
               </mat-form-field>
             </div>
 
@@ -116,11 +116,11 @@
 
             <div class="col-6">
               <mat-form-field class="full-width-input" appearance='outline'>
-                <mat-label>地下階数</mat-label>
-                <input matInput placeholder="地下階数" [(ngModel)]='blueprint.numberOfBasementFloors'
-                    required type="number"
-                    id="numberOfBasementFloors" name="numberOfBasementFloors" #numberOfBasementFloors="ngModel">
-                <div matSuffix class='right-label'>階</div>
+                <mat-label>前面道路の幅員</mat-label>
+                <input matInput placeholder="前面道路の幅員" [(ngModel)]='blueprint.frontalRoadWidth'
+                    type="number"
+                    id="frontalRoadWidth" name="frontalRoadWidth" #frontalRoadWidth="ngModel">
+                <div matSuffix class='right-label' >m</div>
               </mat-form-field>
             </div>
 
@@ -135,11 +135,11 @@
 
             <div class="col-6">
               <mat-form-field class="full-width-input" appearance='outline'>
-                <mat-label>建物高さ</mat-label>
-                <input matInput placeholder="建物高さ" [(ngModel)]='blueprint.heightOfBuilding'
+                <mat-label>地下階数</mat-label>
+                <input matInput placeholder="地下階数" [(ngModel)]='blueprint.numberOfBasementFloors'
                     required type="number"
-                    id="heightOfBuilding" name="heightOfBuilding" #heightOfBuilding="ngModel">
-                <div matSuffix class='right-label' >m</div>
+                    id="numberOfBasementFloors" name="numberOfBasementFloors" #numberOfBasementFloors="ngModel">
+                <div matSuffix class='right-label'>階</div>
               </mat-form-field>
             </div>
 
@@ -165,14 +165,25 @@
             </div>
 
             <div class="col-6 checkbox-container">
-                <section>
-                  <mat-checkbox id="buildingCoverageRatioDeregulation" name="buildingCoverageRatioDeregulation" #buildingCoverageRatioDeregulation="ngModel"
-                      [(ngModel)]="blueprint.buildingCoverageRatioDeregulation"
-                      labelPosition='after'>
-                      建ぺい率緩和に当てはまる場合チェック
-                  </mat-checkbox>
-                </section>
+              <section>
+                <mat-checkbox id="buildingCoverageRatioDeregulation" name="buildingCoverageRatioDeregulation" #buildingCoverageRatioDeregulation="ngModel"
+                    [(ngModel)]="blueprint.buildingCoverageRatioDeregulation"
+                    labelPosition='after'>
+                    建ぺい率緩和に当てはまる場合チェック
+                </mat-checkbox>
+              </section>
             </div>
+
+            <div class="col-6">
+              <mat-form-field class="full-width-input" appearance='outline'>
+                <mat-label>建物高さ</mat-label>
+                <input matInput placeholder="建物高さ" [(ngModel)]='blueprint.heightOfBuilding'
+                    required type="number"
+                    id="heightOfBuilding" name="heightOfBuilding" #heightOfBuilding="ngModel">
+                <div matSuffix class='right-label' >m</div>
+              </mat-form-field>
+            </div>
+
 
             <div class="gray-box">
               <div class="row">
@@ -344,7 +355,7 @@
                     <td class='text-right'>{{blueprint.siteArea}}㎡</td>
                   </tr>
                   <tr>
-                    <td>延床面積</td>
+                    <td>延べ面積</td>
                     <td class='text-right'>{{blueprint.totalFloorArea}}㎡</td>
                   </tr>
                   <tr>
@@ -385,7 +396,7 @@
                     <td class='text-right'>{{result?.buildingSite?.siteArea}}㎡</td>
                   </tr> -->
                   <tr>
-                    <td>延床面積</td>
+                    <td>延べ面積</td>
                     <td class='text-right'>{{result?.building?.totalFloorArea}}㎡</td>
                   </tr>
                   <tr>
