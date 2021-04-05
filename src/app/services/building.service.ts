@@ -18,7 +18,7 @@ export class BuildingService {
     const formData = new FormData();
     formData.append('file', file);
     return this.http.post<UploadResponse>(
-      configuration.baseUrl + 'v2/uploadDesign',
+      configuration.baseUrl + 'v1/uploadDesign',
       formData,
       {
         reportProgress: true,
