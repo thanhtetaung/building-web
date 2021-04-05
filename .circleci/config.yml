@@ -34,24 +34,23 @@ jobs:
           repo: building-web
           tag: 'latest,${CIRCLE_SHA1}'
           checkout: false
-    deploy:
-      machine:
-        enabled: true
-      steps:
-        - add_ssh_keys:
+  deploy:
+    machine:
+      enabled: true
+    steps:
+      - add_ssh_keys:
           fingerprints:
-            - "98:9b:ef:8b:7b:07:6f:df:09:3b:a7:ea:6d:c5:4f:e1"
-        - run:
-            name: Deploy to EC2 via SSH
-            command: |
-              ssh $SSH_USER@$SSH_HOST "cd /home/ubuntu/building/building-web/ && docker-compose down && docker-compose pull && docker-compose up -d"
-
+            - "98:9b:ef:8b:7b:07:6f:df:09:3b:a7:ea:6d:c5:4f:e1" 
+      - run:
+          name: Deploy to EC2 via SSH
+          command: |
+            ssh $SSH_USER@$SSH_HOST "cd /home/ubuntu/building/building-web/ && docker-compose down && docker-compose pull && docker-compose up -d"
 
 workflows:
   version: 2.1
   main:
     jobs:
       - build:
-          <<: *master_only
+         <<: *master_only
       - deploy:
-          <<: *master_only
+         <<: *master_only
