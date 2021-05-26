@@ -39,6 +39,30 @@
 
 
     <div class='main-content'>
+      <div class='upload-box'>
+        <p>
+          Huskyは図面の画像を解析し、図面データを作成します。図面データをドラッグしてアップロードしてください。
+        </p>
+        <div class='progress-wrapper' *ngIf='isUploading'>
+          <div class='progress-label' >Uploading file : {{progress}}%</div>
+          <mat-progress-bar mode="determinate" [value]="progress" >
+          </mat-progress-bar>
+        </div>
+        <div class='progress-wrapper' *ngIf='isUploading && progress == 100' style="margin-top: 10px;">
+          <div class='progress-label' >Waiting Response</div>
+          <mat-progress-bar mode='query'>
+          </mat-progress-bar>
+        </div>
+        <file-upload [control]="fileControl" accept="pdf|jpg|jpeg|png" >
+          <ng-template #placeholder>
+            <div id='no-deco' style='display: block; width: 80vh;height: 50px;' fxLayout='row' fxFlex>
+              <div style='padding-top: 14px;height: 50px;' fxFlex>PDFをアップロードしてください</div>
+              <div class='upload-button' fxFlex='250px'>パソコンからファイルを選択</div>
+            </div>
+          </ng-template>
+        </file-upload>
+      </div>
+
       <div class='form-box'>
         <div class="container">
           <h3 class='bold'>基本情報を入力してください。</h3>
@@ -318,29 +342,6 @@
           <button mat-raised-button  (click)='remove(j)'>この図面を破棄する</button>
         </div>
       </div>
-      <div class='upload-box'>
-        <p>
-          Huskyは図面の画像を解析し、図面データを作成します。図面データをドラッグしてアップロードしてください。
-        </p>
-        <div class='progress-wrapper' *ngIf='isUploading'>
-          <div class='progress-label' >Uploading file : {{progress}}%</div>
-          <mat-progress-bar mode="determinate" [value]="progress" >
-          </mat-progress-bar>
-        </div>
-        <div class='progress-wrapper' *ngIf='isUploading && progress == 100' style="margin-top: 10px;">
-          <div class='progress-label' >Waiting Response</div>
-          <mat-progress-bar mode='query'>
-          </mat-progress-bar>
-        </div>
-        <file-upload [control]="fileControl" accept="pdf|jpg|jpeg|png" >
-          <ng-template #placeholder>
-            <div id='no-deco' style='display: block; width: 80vh;height: 50px;' fxLayout='row' fxFlex>
-              <div style='padding-top: 14px;height: 50px;' fxFlex>PDFをアップロードしてください</div>
-              <div class='upload-button' fxFlex='250px'>パソコンからファイルを選択</div>
-            </div>
-          </ng-template>
-        </file-upload>
-      </div>
 
       <div  [hidden]="!result">
         <div class='form-box mt-5' #resultContent>
@@ -431,7 +432,7 @@
 
         <!-- HM Start -->
         <!-- result 2 Start-->
-        <div class='form-box mt-5' #resultContent>
+        <div class='form-box mt-2' #resultContent>
           <div class='container pb-3'>
             <div class='text-center'><h1>容積率解析結果</h1></div>
             <div>
@@ -506,7 +507,7 @@
         <!-- result 2 End-->
 
         <!-- result 3 Start-->
-        <div class='form-box mt-5' #resultContent>
+        <div class='form-box mt-2' #resultContent>
             <div class='container2 pb-3'>
               <div class='text-center'>
                 <h1>建具符号カウント結果</h1>

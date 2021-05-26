@@ -70,7 +70,7 @@ mat-progress-bar {
   position: relative;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  padding-bottom: 300px;
+  padding-bottom: 200px;
 }
 .content {
   background-color: gray;
@@ -101,6 +101,7 @@ mat-progress-bar {
   -o-box-shadow: 0 0 10px  rgba(0,0,0,0.6);
   border-radius: 5px;
   padding: 54px 100px;
+  margin-bottom: 20px;
 }
 
 .form-box, .image-form-box {
