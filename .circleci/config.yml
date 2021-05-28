@@ -30,13 +30,12 @@ jobs:
             - ./node_modules
           key: dependencies-{{ checksum "yarn.lock" }}
       - run:
-          name: set env for building
+          name: set env for server environment and image name
           command: |
-            [ "$CIRCLE_BRANCH" == "master" ] && SERVER_ENV=production || SERVER_ENV=staging
-      - run:
-          name: set env for image name
-          command: |
-            [ "$CIRCLE_BRANCH" == "master" ] && IMAGE_NAME=building-web || IMAGE_NAME=building-web-staging
+            [ "$CIRCLE_BRANCH" == "master" ] && echo "export SERVER_ENV=production" >> ${BASH_ENV} || echo "export SERVER_ENV=staging" >> ${BASH_ENV}
+            [ "$CIRCLE_BRANCH" == "master" ] && echo "export IMAGE_NAME=building-web" >> ${BASH_ENV} || echo "export IMAGE_NAME=building-web-staging" >> ${BASH_ENV}
+            echo "Server Environment: $SERVER_ENV"
+            echo "Image Name : $IMAGE_NAME"
       - run:
           name: angular-build
           command: |
@@ -44,7 +43,7 @@ jobs:
       - setup_remote_docker:
           version: 19.03.13
       - aws-ecr/build-and-push-image:
-          repo: '${IMAGE_NAME}'
+          repo: $IMAGE_NAME
           tag: 'latest,${CIRCLE_SHA1}'
           checkout: false
   deploy:
