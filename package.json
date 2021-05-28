@@ -24,6 +24,7 @@
     "@angular/router": "~11.2.0",
     "@covalent/core": "^3.1.0",
     "@iplab/ngx-file-upload": "^2.0.9",
+    "@ismaestro/ngx-scroll-to-first-invalid": "^3.0.0",
     "aws-sdk": "^2.868.0",
     "ng-lazyload-image": "^9.1.0",
     "ngx-lightbox": "^2.2.2",

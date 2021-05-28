@@ -67,6 +67,33 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "staging": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.staging.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "1mb",
+                  "maximumError": "2mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "5kb",
+                  "maximumError": "10kb"
+                }
+              ]
             }
           }
         },
@@ -78,6 +105,9 @@
           "configurations": {
             "production": {
               "browserTarget": "building-web:build:production"
+            },
+            "staging": {
+              "browserTarget": "building-web:build:staging"
             }
           }
         },
@@ -127,6 +157,9 @@
           "configurations": {
             "production": {
               "devServerTarget": "building-web:serve:production"
+            },
+            "staging": {
+              "devServerTarget": "building-web:serve:staging"
             }
           }
         }

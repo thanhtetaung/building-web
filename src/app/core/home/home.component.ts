@@ -12,9 +12,10 @@ import { UploadResponse } from 'src/app/models/upload-response';
 import { BuildingService } from 'src/app/services/building.service';
 import { HistoryService } from 'src/app/services/history-service';
 import { UiUtil } from 'src/app/util/ui-util';
-import { configuration } from '../../config/configuration';
 import { valueTextMap } from '../../config/const';
 import { Lightbox } from 'ngx-lightbox';
+import { environment } from 'src/environments/environment';
+import { MatSidenavContent } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-home',
@@ -28,6 +29,8 @@ export class HomeComponent extends BaseComponent implements OnInit {
   isUploading = false;
   result: BlueprintAnalysisResponse | undefined;
 
+  showUploadBox = true
+
   useDistrictsMap = valueTextMap.useDistricts;
   specialRoadExistenceMap = valueTextMap.specialRoadExistence;
   blueprintTypeMap = valueTextMap.blueprintType;
@@ -39,12 +42,15 @@ export class HomeComponent extends BaseComponent implements OnInit {
   @ViewChild('resultContent')
   resultContent!: ElementRef;
 
+  @ViewChild('uploadBox')
+  uploadbox!: ElementRef;
 
   public fileControl = new FileUploadControl(FileUploadValidators.filesLimit(2)).setListVisibility(false);
 
   constructor(private buildingService: BuildingService, router: Router, uiUtil: UiUtil,
     location: Location, historyService: HistoryService,
-    @Inject(DOCUMENT) private document: Document, private _lightbox: Lightbox) {
+    @Inject(DOCUMENT) private document: Document, private _lightbox: Lightbox,
+    private el: ElementRef, private sideNavContent: MatSidenavContent) {
     super(uiUtil, router, location, historyService);
 
     // //dummy
@@ -71,6 +77,7 @@ export class HomeComponent extends BaseComponent implements OnInit {
               return fileMeta;
             });
             this.uploadedResponses.push(response);
+            this.showUploadBox = false
           } else {
             this.progress = response.progress;
           }
@@ -87,19 +94,35 @@ export class HomeComponent extends BaseComponent implements OnInit {
           this.fileControl.setValue([]);
         });
       }
+    });
+  }
 
-    })
+  showUploadBoxAndScroll() {
+    this.showUploadBox = true;
+    console.log(this.uploadbox.nativeElement);
+    setTimeout(() => {
+      this.sideNavContent.scrollTo({
+        behavior: 'smooth',
+        left: 0,
+        top: this.uploadbox.nativeElement.offsetTop - 150
+      });
+    }, 200);
+
   }
 
   imageUrl(relativePath: string) {
-    return configuration.baseUrl + "v1/" + relativePath + '?dpi=400&access_token=' + localStorage.getItem('accessToken');
+    return environment.baseUrl + "v1/" + relativePath + '?dpi=400&access_token=' + localStorage.getItem('accessToken');
   }
 
   submit() {
     if (this.blueprintForm.invalid || this.uploadedResponses.length === 0) {
+      setTimeout(() => {
+        this.scrollToFirstInvalidControl();
+      }, 200);
+
       return;
     }
-    this.blueprint.files = this.uploadedResponses.map(response => configuration.baseUrl + response.path);
+    this.blueprint.files = this.uploadedResponses.map(response => environment.baseUrl + response.path);
     this.blueprint.fileMetaInfos = this.uploadedResponses.map(response => response.fileMetaInfos.filter(meta => meta.include === true))
     this.buildingService.blueprintAnalysis(this.blueprint)
       .subscribe((res) => {
@@ -108,13 +131,24 @@ export class HomeComponent extends BaseComponent implements OnInit {
         // this.result.externalShapeDrawnImgs.forEach(img => img.img = 'https://husky-ai-data.s3.amazonaws.com/building_blueprint_analysis/result_files/JngjndfjhBfj/eyJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOiJLb3VyeXUiLCJsYXN0TmFtZSI6IktpbiIsInJvbGVOYW1lIjoiUk9MRV9VU0VSIiwidXNlcm5hbWUiOiJrb211Z2kiLCJzdWIiOiJrb211Z2kiLCJpc3MiOiJadWx1IiwiZXhwIjoxNjQ2Mjk0NTk2LCJpYXQiOjE2MTQ3NTg1OTZ9.BuiFLXY0HzaiV4V2FHzoxJpPIPJlXjWbWcsSgEeipdw//area_table_external_shape_drawn_img_0.png?AWSAccessKeyId=AKIAIAGWIZNVODLSWWMQ&Signature=ZOb8QradixTWTwpWf81RpRplrFM%3D&Expires=1617902617')
         // this.result.fixtureSymbolDrawnImgs.forEach(img => img.img = 'https://husky-ai-data.s3.amazonaws.com/building_blueprint_analysis/result_files/JngjndfjhBfj/eyJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOiJLb3VyeXUiLCJsYXN0TmFtZSI6IktpbiIsInJvbGVOYW1lIjoiUk9MRV9VU0VSIiwidXNlcm5hbWUiOiJrb211Z2kiLCJzdWIiOiJrb211Z2kiLCJpc3MiOiJadWx1IiwiZXhwIjoxNjQ2Mjk0NTk2LCJpYXQiOjE2MTQ3NTg1OTZ9.BuiFLXY0HzaiV4V2FHzoxJpPIPJlXjWbWcsSgEeipdw//area_table_external_shape_drawn_img_0.png?AWSAccessKeyId=AKIAIAGWIZNVODLSWWMQ&Signature=ZOb8QradixTWTwpWf81RpRplrFM%3D&Expires=1617902617')
         setTimeout(()=> {
-          this.resultContent.nativeElement.scrollIntoView();
-        }, 500);
+          this.resultContent.nativeElement.scrollIntoView({ behavior: 'smooth' });
+        }, 20);
 
 
     }, (e: HttpErrorResponse) => {
       this.uiUtil.showMessage(e.message);
     });
+  }
+
+  private scrollToFirstInvalidControl() {
+    const element: HTMLElement = this.el.nativeElement.querySelector("form .ng-invalid");
+
+    this.sideNavContent.scrollTo({
+      behavior: 'smooth',
+      left: 0,
+      top: element.parentElement!.offsetTop - 150
+    });
+
   }
 
   trackByIndex(index: number, object: any) {

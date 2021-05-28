@@ -1,4 +1,4 @@
-<form action="" #blueprintForm="ngForm" (ngSubmit)="submit()">
+<form action="" #blueprintForm="ngForm" (ngSubmit)="submit()" ngxScrollToFirstInvalid>
   <div class='main'>
     <div class='top-img'>
       <img src='assets/images/topimage.png'>
@@ -39,7 +39,7 @@
 
 
     <div class='main-content'>
-      <div class='upload-box'>
+      <div class='upload-box' [hidden]="!showUploadBox" #uploadBox>
         <p>
           Huskyは図面の画像を解析し、図面データを作成します。図面データをドラッグしてアップロードしてください。
         </p>
@@ -339,6 +339,7 @@
         </div>
         <hr>
         <div class='remove-box'>
+          <button mat-raised-button *ngIf="!showUploadBox && uploadedResponses.length - 1 == j" (click)='showUploadBoxAndScroll()'>ファイルを追加する</button>
           <button mat-raised-button  (click)='remove(j)'>この図面を破棄する</button>
         </div>
       </div>

@@ -2,6 +2,7 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { configuration } from '../config/configuration';
 import { Blueprint } from '../models/blueprint';
 import { BlueprintAnalysisResponse } from '../models/blueprint-analysis-response';
@@ -18,7 +19,7 @@ export class BuildingService {
     const formData = new FormData();
     formData.append('file', file);
     return this.http.post<UploadResponse>(
-      configuration.baseUrl + 'v1/uploadDesign',
+      environment.baseUrl + 'v1/uploadDesign',
       formData,
       {
         reportProgress: true,
@@ -43,7 +44,6 @@ export class BuildingService {
   }
 
   blueprintAnalysis(blueprint: Blueprint): Observable<BlueprintAnalysisResponse> {
-    const promise = this.http.post<BlueprintAnalysisResponse>(configuration.baseUrl + 'v1/blueprintAnalysis', blueprint);
-    return promise;
+    return this.http.post<BlueprintAnalysisResponse>(environment.baseUrl + 'v1/blueprintAnalysis', blueprint);
   }
 }

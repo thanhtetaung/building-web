@@ -2,6 +2,10 @@ master_only: &master_only
   filters:
     branches:
       only: master
+develop_only: &develop_only
+  filters:
+    branches:
+      only: develop
 version: 2.1
 orbs:
   aws-ecr: circleci/aws-ecr@6.15.3
@@ -26,12 +30,21 @@ jobs:
             - ./node_modules
           key: dependencies-{{ checksum "yarn.lock" }}
       - run:
+          name: set env for building
+          command: |
+            [ "$CIRCLE_BRANCH" == "master" ] && SERVER_ENV=production || SERVER_ENV=staging
+      - run:
+          name: set env for image name
+          command: |
+            [ "$CIRCLE_BRANCH" == "master" ] && IMAGE_NAME=building-web || IMAGE_NAME=building-web-staging
+      - run:
           name: angular-build
-          command: yarn ng build --prod --aot --no-progress
+          command: |
+            yarn ng build --configuration=$SERVER_ENV --aot --no-progress
       - setup_remote_docker:
           version: 19.03.13
       - aws-ecr/build-and-push-image:
-          repo: building-web
+          repo: '${IMAGE_NAME}'
           tag: 'latest,${CIRCLE_SHA1}'
           checkout: false
   deploy:
@@ -40,11 +53,22 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "98:9b:ef:8b:7b:07:6f:df:09:3b:a7:ea:6d:c5:4f:e1" 
+            - "98:9b:ef:8b:7b:07:6f:df:09:3b:a7:ea:6d:c5:4f:e1"
       - run:
           name: Deploy to EC2 via SSH
           command: |
             ssh $SSH_USER@$SSH_HOST "cd /home/ubuntu/building/building-web/ && docker-compose down && docker-compose pull && docker-compose up -d"
+  deploy-staging:
+    machine:
+      enabled: true
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "98:9b:ef:8b:7b:07:6f:df:09:3b:a7:ea:6d:c5:4f:e1"
+      - run:
+          name: Deploy to Staging EC2 via SSH
+          command: |
+            ssh $SSH_USER@$SSH_STAGING_HOST "cd /home/ubuntu/building/building-web/ && docker-compose down && docker-compose pull && docker-compose up -d"
 
 workflows:
   version: 2.1
@@ -56,3 +80,7 @@ workflows:
          requires:
            - build
          <<: *master_only
+      - deploy-staging:
+         requires:
+           - build
+         <<: *develop_only

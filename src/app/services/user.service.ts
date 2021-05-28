@@ -6,6 +6,7 @@ import {
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
 import { configuration } from '../config/configuration';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class UserService {
@@ -17,7 +18,7 @@ export class UserService {
       'password': password
     };
     return this.http.post<User>(
-      configuration.baseUrl + 'v1/login',
+      environment.baseUrl + 'v1/login',
       body
     );
 
@@ -25,7 +26,7 @@ export class UserService {
 
   logout(): Observable<void> {
     return this.http.get<void>(
-      configuration.baseUrl + 'v1/logout'
+      environment.baseUrl + 'v1/logout'
     );
 
   }
@@ -38,7 +39,7 @@ export class UserService {
       'lastName': user.lastName,
     };
     return this.http.post<User>(
-      configuration.baseUrl + 'v1/register',
+      environment.baseUrl + 'v1/register',
       body
     );
 
@@ -46,7 +47,7 @@ export class UserService {
 
   profile(): Observable<User> {
     return this.http.get<User>(
-      configuration.baseUrl + 'v1/profile'
+      environment.baseUrl + 'v1/profile'
     );
 
   }
@@ -57,7 +58,7 @@ export class UserService {
       'lastName': user.lastName,
     };
     return this.http.put<User>(
-      configuration.baseUrl + 'v1/profile',
+      environment.baseUrl + 'v1/profile',
       body
     );
 
@@ -69,8 +70,7 @@ export class UserService {
       'newPassword': newPassword
     };
 
-    const promise = this.http.post<void>(configuration.baseUrl + 'v1/changePassword', body);
-    return promise;
+    return this.http.post<void>(environment.baseUrl + 'v1/changePassword', body);
   }
 
 
