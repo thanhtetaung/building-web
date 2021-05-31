@@ -99,7 +99,6 @@ export class HomeComponent extends BaseComponent implements OnInit {
 
   showUploadBoxAndScroll() {
     this.showUploadBox = true;
-    console.log(this.uploadbox.nativeElement);
     setTimeout(() => {
       this.sideNavContent.scrollTo({
         behavior: 'smooth',
@@ -122,7 +121,7 @@ export class HomeComponent extends BaseComponent implements OnInit {
 
       return;
     }
-    this.blueprint.files = this.uploadedResponses.map(response => environment.baseUrl + response.path);
+    this.blueprint.files = this.uploadedResponses.map(response => environment.baseUrl + "v1/" + response.path);
     this.blueprint.fileMetaInfos = this.uploadedResponses.map(response => response.fileMetaInfos.filter(meta => meta.include === true))
     this.buildingService.blueprintAnalysis(this.blueprint)
       .subscribe((res) => {
