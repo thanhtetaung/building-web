@@ -1,0 +1,29 @@
+<div class="modal-container">
+  <div class="icon-wrapper">
+    <img src="assets/images/email.svg">
+  </div>
+  <div class="title">メールを確認するため{{email}}に送信されたコードを入力してください。</div>
+  <div class="otp-input-wrapper">
+
+    <input type="text" name="code1" id="code1" #code1 (paste)="onPaste($event)" (keydown)='onKeydown($event, code1)'>
+    <input type="text" name="code2" id="code2" #code2 (paste)="onPaste($event)" (keydown)='onKeydown($event, code2)'>
+    <input type="text" name="code3" id="code3" #code3 (paste)="onPaste($event)" (keydown)='onKeydown($event, code3)'>
+    <input type="text" name="code4" id="code4" #code4 (paste)="onPaste($event)" (keydown)='onKeydown($event, code4)'>
+    <input type="text" name="code5" id="code5" #code5 (paste)="onPaste($event)" (keydown)='onKeydown($event, code5)'>
+    <input type="text" name="code6" id="code6" #code6 (paste)="onPaste($event)" (keydown)='onKeydown($event, code6)'>
+  </div>
+  <div class="text-center pb-2">
+    <a class='resend' (click)='resend()'>再送信</a>
+  </div>
+
+  <div class="text-center pt-2">
+    <button type="button" class="verify-button close" mat-dialog-close mat-raised-button color="secondary">閉じる</button>
+    <button type="button" class="verify-button" (click)='verify()' mat-raised-button color="primary">確認</button>
+  </div>
+  <mat-error *ngIf="errorMessage" class="error-message">
+    {{errorMessage}}
+  </mat-error>
+  <div class="modal-overlay" *ngIf="verifying || resending">
+    <mat-spinner diameter="50"></mat-spinner>
+  </div>
+</div>

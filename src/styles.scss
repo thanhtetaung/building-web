@@ -4,9 +4,16 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 mat-form-field.ng-invalid.ng-touched {
-  animation: bigger;
-  animation-duration: 0.3s;
+  -webkit-animation: bigger;
+          animation: bigger;
+  -webkit-animation-duration: 0.3s;
+          animation-duration: 0.3s;
   margin-bottom: 17px;
+}
+
+@-webkit-keyframes bigger {
+  from {margin-bottom: 0;}
+  to {margin-bottom: 17px;}
 }
 
 @keyframes bigger {
@@ -15,9 +22,16 @@ mat-form-field.ng-invalid.ng-touched {
 }
 
 mat-form-field.ng-valid.ng-touched {
-  animation: smaller;
-  animation-duration: 0.3s;
+  -webkit-animation: smaller;
+          animation: smaller;
+  -webkit-animation-duration: 0.3s;
+          animation-duration: 0.3s;
   margin-bottom: 0px;
+}
+
+@-webkit-keyframes smaller {
+  from {margin-bottom: 17px;}
+  to {margin-bottom: 0;}
 }
 
 @keyframes smaller {
@@ -27,4 +41,21 @@ mat-form-field.ng-valid.ng-touched {
 
 mat-error {
   text-align: left;
+}
+
+.mat-list-item-content {
+  padding-left: 24px !important;
+}
+
+
+.submit-button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex !important;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }

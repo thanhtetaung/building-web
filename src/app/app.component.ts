@@ -14,7 +14,7 @@ import { UiUtil } from './util/ui-util';
 })
 export class AppComponent extends BaseComponent implements OnInit {
 
-  title = 'Building'
+  title = 'i-Husky'
 
   authGuardService: AuthGuardService;
 

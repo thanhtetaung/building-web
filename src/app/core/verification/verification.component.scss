@@ -1,0 +1,97 @@
+.modal-container {
+  width: 500px;
+  height: auto;
+  font-size: 100%;
+  letter-spacing: 120%;
+  color: #5f6368;
+  position: relative;
+}
+
+.otp-input-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 20px 50px 20px 50px;
+  input:focus {
+    outline: none;
+  }
+  input {
+    font-size: 150%;
+    border: none;
+    height: 60px;
+    text-align: center;
+    width: 50px;
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.45);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.45);
+  }
+
+  .code:valid {
+    border-color: #3498db;
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.45);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.45);
+  }
+}
+
+.title {
+  padding: 0px 40px;
+  margin-top: 20px;
+}
+
+.icon-wrapper {
+  text-align: center;
+  padding: 0px 50px 0px 50px;
+  img {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+a.resend {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+button.verify-button {
+  width: 100px;
+  height: 40px;
+}
+
+button.close {
+  margin-right: 20px;
+}
+
+.modal-overlay {
+  position: absolute;
+  top: -24px;
+  right: -24px;
+  bottom: -24px;
+  left: -24px;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.error-message {
+  margin-top: 20px;
+  text-align: center;
+}
+
+
+
+
+
+
+

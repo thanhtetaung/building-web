@@ -8,5 +8,6 @@ export class User {
   newPassword!: string;
   firstName!: string;
   lastName!: string;
+  email!: string;
 }
 

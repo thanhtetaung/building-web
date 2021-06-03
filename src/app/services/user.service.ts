@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { User } from '../models/user';
 import { configuration } from '../config/configuration';
 import { environment } from 'src/environments/environment';
+import { Otp } from '../models/otp';
 
 @Injectable()
 export class UserService {
@@ -31,12 +32,15 @@ export class UserService {
 
   }
 
-  register(user: User): Observable<User> {
+  register(user: User, otp: String
+    ): Observable<User> {
     const body = {
       'username': user.username,
       'password': user.password,
       'firstName': user.firstName,
       'lastName': user.lastName,
+      'email': user.email,
+      'otp': otp,
     };
     return this.http.post<User>(
       environment.baseUrl + 'v1/register',
@@ -73,5 +77,23 @@ export class UserService {
     return this.http.post<void>(environment.baseUrl + 'v1/changePassword', body);
   }
 
+  requestVerification(email: string): Observable<void> {
+    const body = {
+      'email': email
+    };
+    return this.http.get<void>(environment.baseUrl + 'v1/requestVerification', {
+      params: body
+    });
+
+  }
+
+  verify(email: string, otp: string): Observable<Otp> {
+    const body = {
+      'email': email,
+      'otp': otp
+    };
+    return this.http.post<Otp>(environment.baseUrl + 'v1/verify', body);
+
+  }
 
 }

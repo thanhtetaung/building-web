@@ -28,6 +28,7 @@ export class HomeComponent extends BaseComponent implements OnInit {
   progress = 0;
   isUploading = false;
   result: BlueprintAnalysisResponse | undefined;
+  isSubmiting = false;
 
   showUploadBox = true
 
@@ -116,14 +117,15 @@ export class HomeComponent extends BaseComponent implements OnInit {
 
   submit() {
     if (this.blueprintForm.invalid || this.uploadedResponses.length === 0) {
+      this.blueprintForm.control.markAllAsTouched();
       setTimeout(() => {
         this.scrollToFirstInvalidControl();
       }, 200);
-
       return;
     }
     this.blueprint.files = this.uploadedResponses.map(response => environment.baseUrl + response.path);
     this.blueprint.fileMetaInfos = this.uploadedResponses.map(response => response.fileMetaInfos.filter(meta => meta.include === true))
+    this.isSubmiting = true;
     this.buildingService.blueprintAnalysis(this.blueprint)
       .subscribe((res) => {
         this.result = res;
@@ -131,11 +133,13 @@ export class HomeComponent extends BaseComponent implements OnInit {
         // this.result.externalShapeDrawnImgs.forEach(img => img.img = 'https://husky-ai-data.s3.amazonaws.com/building_blueprint_analysis/result_files/JngjndfjhBfj/eyJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOiJLb3VyeXUiLCJsYXN0TmFtZSI6IktpbiIsInJvbGVOYW1lIjoiUk9MRV9VU0VSIiwidXNlcm5hbWUiOiJrb211Z2kiLCJzdWIiOiJrb211Z2kiLCJpc3MiOiJadWx1IiwiZXhwIjoxNjQ2Mjk0NTk2LCJpYXQiOjE2MTQ3NTg1OTZ9.BuiFLXY0HzaiV4V2FHzoxJpPIPJlXjWbWcsSgEeipdw//area_table_external_shape_drawn_img_0.png?AWSAccessKeyId=AKIAIAGWIZNVODLSWWMQ&Signature=ZOb8QradixTWTwpWf81RpRplrFM%3D&Expires=1617902617')
         // this.result.fixtureSymbolDrawnImgs.forEach(img => img.img = 'https://husky-ai-data.s3.amazonaws.com/building_blueprint_analysis/result_files/JngjndfjhBfj/eyJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOiJLb3VyeXUiLCJsYXN0TmFtZSI6IktpbiIsInJvbGVOYW1lIjoiUk9MRV9VU0VSIiwidXNlcm5hbWUiOiJrb211Z2kiLCJzdWIiOiJrb211Z2kiLCJpc3MiOiJadWx1IiwiZXhwIjoxNjQ2Mjk0NTk2LCJpYXQiOjE2MTQ3NTg1OTZ9.BuiFLXY0HzaiV4V2FHzoxJpPIPJlXjWbWcsSgEeipdw//area_table_external_shape_drawn_img_0.png?AWSAccessKeyId=AKIAIAGWIZNVODLSWWMQ&Signature=ZOb8QradixTWTwpWf81RpRplrFM%3D&Expires=1617902617')
         setTimeout(()=> {
+          this.isSubmiting = false;
           this.resultContent.nativeElement.scrollIntoView({ behavior: 'smooth' });
         }, 20);
 
 
     }, (e: HttpErrorResponse) => {
+      this.isSubmiting = false;
       this.uiUtil.showMessage(e.message);
     });
   }
@@ -164,6 +168,9 @@ export class HomeComponent extends BaseComponent implements OnInit {
 
   remove(index: number) {
     this.uploadedResponses.splice(index, 1);
+    if (this.uploadedResponses.length == 0) {
+        this.showUploadBox = true;
+    }
   }
 
   range(range: number) {

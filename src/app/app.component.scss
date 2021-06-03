@@ -1,13 +1,22 @@
 .spacer {
-  flex: 1 1 auto;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
 }
 .sidenav-container {
-  flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  .mat-list-base {
+    padding-top: 0px;
+  }
   .sidenav {
       min-width: 240px;
+      .mat-list-item.active {
+        background-color: #f7f7f7;
+      }
       a {
           display: block;
-          padding: 6px 24px;
           width: 100%;
           text-align: left;
       }
@@ -16,6 +25,8 @@
       padding: 18px 24px;
   }
 }
+
+
 
 .example-container {
   width: 400px;
@@ -26,15 +37,29 @@
 
 mat-drawer-content {
   padding: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 
 mat-form-field.ng-invalid.ng-touched {
-  animation: bigger;
-  animation-duration: 0.3s;
+  -webkit-animation: bigger;
+          animation: bigger;
+  -webkit-animation-duration: 0.3s;
+          animation-duration: 0.3s;
   margin-bottom: 17px;
+}
+
+@-webkit-keyframes bigger {
+  from {margin-bottom: 0;}
+  to {margin-bottom: 17px;}
 }
 
 @keyframes bigger {
@@ -43,9 +68,16 @@ mat-form-field.ng-invalid.ng-touched {
 }
 
 mat-form-field.ng-valid.ng-touched {
-  animation: smaller;
-  animation-duration: 0.3s;
+  -webkit-animation: smaller;
+          animation: smaller;
+  -webkit-animation-duration: 0.3s;
+          animation-duration: 0.3s;
   margin-bottom: 0px;
+}
+
+@-webkit-keyframes smaller {
+  from {margin-bottom: 17px;}
+  to {margin-bottom: 0;}
 }
 
 @keyframes smaller {

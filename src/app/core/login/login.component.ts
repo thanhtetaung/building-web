@@ -16,6 +16,7 @@ import { UiUtil } from 'src/app/util/ui-util';
 export class LoginComponent extends BaseComponent implements OnInit {
 
   user: User = new User();
+  isLogingIn = false;
 
   @ViewChild('loginForm', {static: true}) loginForm!: NgForm;
   errorMessage: string | undefined;
@@ -30,10 +31,13 @@ export class LoginComponent extends BaseComponent implements OnInit {
 
   login() {
     if (this.loginForm.invalid) {
+      this.loginForm.control.markAllAsTouched();
       return;
     }
+    this.isLogingIn = true;
     this.userService.login(this.user.username, this.user.password)
     .subscribe((user: User) => {
+      this.isLogingIn = false;
       localStorage.setItem('username', user.username);
       localStorage.setItem('accessToken', user.token);
       this.loginForm.reset();
@@ -42,14 +46,11 @@ export class LoginComponent extends BaseComponent implements OnInit {
         if (e.status == 401) {
           this.loginForm.controls.username.setErrors({ invalid: true });
           this.loginForm.controls.password.setErrors({ invalid: true });
-          this.errorMessage = 'Invalid Username or Password !';
+          this.errorMessage = 'ユーザー名またはパスワードは無効です。';
         } else {
-          if (e.error.message) {
-            this.errorMessage = e.error.message;
-          } else {
-            this.errorMessage = e.message;
-          }
+          this.errorMessage = e.error.message ?? e.message;
         }
+        this.isLogingIn = false;
     });
   }
 
