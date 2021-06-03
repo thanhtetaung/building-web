@@ -91,6 +91,22 @@ mat-progress-bar {
   bottom: 0;
   right: 0;
 
+  .button-wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+
+}
+
+.submit-button {
+  width: 135px;
 }
 
 .upload-box {

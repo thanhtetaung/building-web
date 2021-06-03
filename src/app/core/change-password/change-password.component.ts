@@ -17,6 +17,7 @@ import { UiUtil } from 'src/app/util/ui-util';
 export class ChangePasswordComponent extends BaseComponent implements OnInit {
 
   user: User = new User();
+  isUpdating = false;
 
   @ViewChild('form', {static: true}) form!: NgForm;
   errorMessage!: string;
@@ -31,20 +32,21 @@ export class ChangePasswordComponent extends BaseComponent implements OnInit {
 
   update() {
     if (this.form.invalid) {
+      this.form.control.markAllAsTouched();
       return;
     }
+    this.isUpdating = true;
     this.userService.changePassword(this.user.oldPassword, this.user.newPassword)
     .subscribe((_) => {
-      this.uiUtil.showMessage('Password updated!');
-
+      this.uiUtil.showMessage('パスワードを更新しました！');
+      this.isUpdating = false;
     }, (e: HttpErrorResponse) => {
         if (e.error.message && e.error.message == 'invalid oldPassword.') {
           this.form.controls.oldPassword.setErrors({ invalid: true });
-        } else if (e.error.message) {
-          this.errorMessage = e.error.message;
         } else {
-          this.errorMessage = e.message;
+          this.errorMessage = e.error.message ?? e.message;
         }
+        this.isUpdating = false;
     });
   }
 

@@ -17,6 +17,7 @@ import { UiUtil } from 'src/app/util/ui-util';
 export class ProfileComponent extends BaseComponent implements OnInit {
 
   user: User = new User();
+  isUpdating = false;
 
   @ViewChild('form', {static: true}) form!: NgForm;
   errorMessage!: string;
@@ -35,18 +36,17 @@ export class ProfileComponent extends BaseComponent implements OnInit {
 
   update() {
     if (this.form.invalid) {
+      this.form.control.markAllAsTouched();
       return;
     }
+    this.isUpdating = true;
     this.userService.update(this.user)
     .subscribe((_) => {
-      this.uiUtil.showMessage('Profile updated!');
-
+      this.isUpdating = false;
+      this.uiUtil.showMessage('プロフィールを更新しました！');
     }, (e: HttpErrorResponse) => {
-        if (e.error.message) {
-          this.errorMessage = e.error.message;
-        } else {
-          this.errorMessage = e.message;
-        }
+        this.errorMessage = e.error.message ?? e.message;
+        this.isUpdating = false;
     });
   }
 

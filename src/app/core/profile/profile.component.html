@@ -1,30 +1,38 @@
 <mat-card>
   <mat-card-content>
     <form action="" #form="ngForm" (ngSubmit)="update()">
-      <h2>Profile</h2>
+      <h2>プロフィール</h2>
       <mat-error *ngIf="errorMessage">
         {{errorMessage}}
       </mat-error>
-
       <mat-form-field class="full-width-input" appearance='outline'>
-        <mat-label>First Name</mat-label>
-        <input matInput placeholder="First Name" [(ngModel)]='user.firstName'
+        <mat-label>メールアドレス</mat-label>
+        <input matInput placeholder="メールアドレス" [(ngModel)]='user.email' disabled
                 maxLength="50"
-                id="firstName" name="firstName" required #firstName="ngModel">
-          <mat-error *ngIf="(firstName.touched || form.submitted) && firstName.hasError('required')" class="invalid-feedback required">First Name is required</mat-error>
-          <mat-error *ngIf="firstName.hasError('invalid')" class="invalid-feedback required">Invalid First Name.</mat-error>
-          <mat-error *ngIf="(firstName.touched || form.submitted) && firstName.hasError('maxlength')" class="invalid-feedback required">First Name should be between 5 to 50 characters.</mat-error>
+                id="email" name="email" #email="ngModel">
       </mat-form-field>
       <mat-form-field class="full-width-input" appearance='outline'>
-        <mat-label>Last Name</mat-label>
-        <input matInput placeholder="Last Name" [(ngModel)]='user.lastName'
+        <mat-label>氏名（姓）</mat-label>
+        <input matInput placeholder="氏名（姓）" [(ngModel)]='user.lastName'
                 maxLength="50"
                 id="lastName" name="lastName" required #lastName="ngModel">
-          <mat-error *ngIf="(lastName.touched || form.submitted) && lastName.hasError('required')" class="invalid-feedback required">Last Name is required.</mat-error>
+          <mat-error *ngIf="(lastName.touched || form.submitted) && lastName.hasError('required')" class="invalid-feedback required">氏名（姓）は必須です。</mat-error>
           <mat-error *ngIf="lastName.hasError('invalid')" class="invalid-feedback required">Invalid Last Name</mat-error>
-          <mat-error *ngIf="(lastName.touched || form.submitted) && lastName.hasError('maxlength')" class="invalid-feedback required">Last Name should be between 5 to 50 characters.</mat-error>
+          <mat-error *ngIf="(lastName.touched || form.submitted) && lastName.hasError('maxlength')" class="invalid-feedback required">氏名（姓）は 5 ～ 50 文字にする必要があります。</mat-error>
       </mat-form-field>
-      <button type="submit" mat-raised-button color="primary">Update</button>
+      <mat-form-field class="full-width-input" appearance='outline'>
+        <mat-label>氏名（名）</mat-label>
+        <input matInput placeholder="氏名（名）" [(ngModel)]='user.firstName'
+                maxLength="50"
+                id="firstName" name="firstName" required #firstName="ngModel">
+          <mat-error *ngIf="(firstName.touched || form.submitted) && firstName.hasError('required')" class="invalid-feedback required">氏名（名）は必須です。</mat-error>
+          <mat-error *ngIf="firstName.hasError('invalid')" class="invalid-feedback required">Invalid First Name.</mat-error>
+          <mat-error *ngIf="(firstName.touched || form.submitted) && firstName.hasError('maxlength')" class="invalid-feedback required">氏名（名）は 5 ～ 50 文字にする必要があります。</mat-error>
+      </mat-form-field>
+      <button type="submit" class="submit-button" mat-raised-button [disabled]='isUpdating' color="primary">
+        <mat-spinner *ngIf="isUpdating" diameter="28" matSuffix></mat-spinner>
+        <span *ngIf="!isUpdating">変更</span>
+      </button>
     </form>
   </mat-card-content>
 </mat-card>

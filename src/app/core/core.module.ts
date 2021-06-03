@@ -11,6 +11,7 @@ import { FileUploadModule } from '@iplab/ngx-file-upload';
 import { LightboxModule } from 'ngx-lightbox';
 import { FooterComponent } from './footer/footer.component';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { VerificationComponent } from './verification/verification.component';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     ChangePasswordComponent,
     ProfileComponent,
     FooterComponent,
+    VerificationComponent,
   ],
   exports: [
     HomeComponent,

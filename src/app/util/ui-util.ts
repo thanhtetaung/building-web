@@ -9,13 +9,13 @@ export class UiUtil {
   showError(message: string): Observable<any> {
     return this.dialogService.openAlert({
       message: message,
-      title: 'Error',
+      title: 'エラー',
       closeButton: 'Ok',
     }).afterClosed();
   }
 
   showMessage(message: string): Observable<any> {
-    return this.showMessageWithTitle(message, 'Info');
+    return this.showMessageWithTitle(message, '情報');
   }
 
   showMessageWithTitle(message: string, title: string): Observable<any> {

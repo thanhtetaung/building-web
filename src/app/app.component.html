@@ -8,16 +8,16 @@
     </span>
     <span class="spacer"></span>
     <span *ngIf='authGuardService.isAuthenticated()'>
-      <button mat-button (click)='doLogout()'>Logout</button>
+      <button mat-button (click)='doLogout()'>ログアウト</button>
     </span>
   </mat-toolbar>
 </div>
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer autoFocus="false" mode="over" class="sidenav">
     <mat-nav-list>
-      <a mat-list-item (click)='navigate(["/"])'>Home</a>
-      <a mat-list-item (click)='navigate(["/profile"])'>Profile</a>
-      <a mat-list-item (click)='navigate(["/changePassword"])' >Change Password</a>
+      <a mat-list-item routerLinkActive="active" (click)='navigate(["/"])'>ホーム</a>
+      <a mat-list-item routerLinkActive="active" (click)='navigate(["/profile"])'>メールアドレス</a>
+      <a mat-list-item routerLinkActive="active" (click)='navigate(["/changePassword"])' >パスワード変更</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content style="height: 93vh;">

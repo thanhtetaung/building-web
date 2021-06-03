@@ -579,8 +579,13 @@
     </div>
 
     <div class="box">
-      <button type="submit" class="submit-button"
-      mat-raised-button color="primary">解析を始める</button>
+      <div class="button-wrapper">
+        <button type="submit" class="submit-button" [disabled]="isSubmiting"
+        mat-raised-button color="primary">
+          <mat-spinner *ngIf="isSubmiting" diameter="28" matSuffix></mat-spinner>
+          <span *ngIf="!isSubmiting">解析を始める</span>
+        </button>
+      </div>
       <app-footer></app-footer>
     </div>
   </div>
