@@ -12,6 +12,7 @@ import { LightboxModule } from 'ngx-lightbox';
 import { FooterComponent } from './footer/footer.component';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { VerificationComponent } from './verification/verification.component';
+import { BuildingComponent } from './building/building.component';
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import { VerificationComponent } from './verification/verification.component';
     ProfileComponent,
     FooterComponent,
     VerificationComponent,
+    BuildingComponent,
   ],
   exports: [
     HomeComponent,

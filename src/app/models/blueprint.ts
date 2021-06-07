@@ -1,6 +1,10 @@
+import { BlueprintAnalysisResponse } from "./blueprint-analysis-response";
 import { FileMeta } from "./file-meta";
+import { UploadResponse } from "./upload-response";
 
 export class Blueprint {
+  id!: string;
+  name!: string;
   siteArea!: number;
   totalFloorArea!: number;
   fireZone!: string;
@@ -19,4 +23,9 @@ export class Blueprint {
   files: Array<string> = [];
   fileMetaInfos: Array<Array<FileMeta>> = [];
   floorAreas: Array<number> =[];
+  result!: BlueprintAnalysisResponse;
+  processingStatus!: string
+  imageMetaInfos: Array<UploadResponse> = [];
+  executionArn!: string;
+  startDate!: number;
 }

@@ -31,7 +31,9 @@ export class ProfileComponent extends BaseComponent implements OnInit {
     this.userService.profile()
       .subscribe((u) => {
         this.user = u;
-      });
+      }, (e: HttpErrorResponse) => {
+        this.uiUtil.showMessage(e.error.message ?? e.message);
+    });
   }
 
   update() {
