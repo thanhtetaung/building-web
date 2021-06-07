@@ -7,6 +7,7 @@ import { HomeComponent } from './core/home/home.component';
 import { RegisterComponent } from './core/register/register.component';
 import { ChangePasswordComponent } from './core/change-password/change-password.component';
 import { ProfileComponent } from './core/profile/profile.component';
+import { BuildingComponent } from './core/building/building.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -15,6 +16,8 @@ const routes: Routes = [
   { path: 'changePassword', component: ChangePasswordComponent, canActivate: [AuthGuardService] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuardService]},
+  { path: 'building/:id', component: BuildingComponent, canActivate: [AuthGuardService]},
+  { path: 'building', component: BuildingComponent, canActivate: [AuthGuardService]},
 ];
 
 @NgModule({

@@ -32,5 +32,16 @@ export const valueTextMap = {
     "air_conditioning_ventilation_sanitation_equipment_plan": "空調換気衛生設備図",
     "construction_plan": "構造図",
     "electrical_equipment_plan": "電気設備図"
+  },
+  "fireZone": {
+    "fire_preventive_district": "防火地域",
+    "quasi_fire_preventive_district": "準防火地域",
+    "non_fire_preventive_district": "非防火地域"
+  },
+  "status": {
+    "FAILED": "失敗",
+    "PROCESSING": "処理中",
+    "SUCCEEDED": "処理中",
+    "COMPLETED": "完了"
   }
 }

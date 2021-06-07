@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { configuration } from '../config/configuration';
 import { Blueprint } from '../models/blueprint';
 import { BlueprintAnalysisResponse } from '../models/blueprint-analysis-response';
+import { Building } from '../models/building';
 import { UploadResponse } from '../models/upload-response';
 
 @Injectable({
@@ -43,7 +44,15 @@ export class BuildingService {
 
   }
 
-  blueprintAnalysis(blueprint: Blueprint): Observable<BlueprintAnalysisResponse> {
-    return this.http.post<BlueprintAnalysisResponse>(environment.baseUrl + 'v1/blueprintAnalysis', blueprint);
+  blueprintAnalysis(blueprint: Blueprint): Observable<Blueprint> {
+    return this.http.post<Blueprint>(environment.baseUrl + 'v1/blueprintAnalysis', blueprint);
+  }
+
+  getBuildings(): Observable<Array<Blueprint>> {
+    return this.http.get<Array<Blueprint>>(environment.baseUrl + 'v1/buildings');
+  }
+
+  getBuilding(id: string): Observable<Blueprint> {
+    return this.http.get<Blueprint>(environment.baseUrl + 'v1/buildings/' + id);
   }
 }
