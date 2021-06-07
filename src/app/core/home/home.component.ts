@@ -43,6 +43,7 @@ export class HomeComponent extends BaseComponent implements OnInit {
     this.websocketService = new WebsocketService();
     this.websocketService.connect()
       .subscribe(message => {
+        console.log(message);
         this.load(true);
       },
       err => console.log(err));

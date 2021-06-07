@@ -107,6 +107,7 @@ export class BuildingComponent extends BaseComponent implements OnInit {
     this.websocketService = new WebsocketService();
     this.websocketService.connect()
       .subscribe(message => {
+        console.log(message);
         if (message.executionArn === this.blueprint.executionArn) {;
           this.load(this.blueprint.id, true);
         }
