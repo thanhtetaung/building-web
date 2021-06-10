@@ -17,6 +17,7 @@ import { Lightbox } from 'ngx-lightbox';
 import { environment } from 'src/environments/environment';
 import { MatSidenavContent } from '@angular/material/sidenav';
 import { WebsocketService } from 'src/app/services/websocket.service';
+import { retry } from 'rxjs/operators';
 
 @Component({
   selector: 'app-building',
@@ -44,6 +45,9 @@ export class BuildingComponent extends BaseComponent implements OnInit {
 
   @ViewChild('resultContent')
   resultContent!: ElementRef;
+
+  @ViewChild('failedContent')
+  failedContent!: ElementRef;
 
   @ViewChild('uploadBox')
   uploadbox!: ElementRef;
@@ -106,6 +110,7 @@ export class BuildingComponent extends BaseComponent implements OnInit {
 
     this.websocketService = new WebsocketService();
     this.websocketService.connect()
+      .pipe(retry())
       .subscribe(message => {
         console.log(message);
         if (message.executionArn === this.blueprint.executionArn) {;
@@ -124,6 +129,10 @@ export class BuildingComponent extends BaseComponent implements OnInit {
         this.result = res.result;
         setTimeout(()=> {
           this.resultContent.nativeElement.scrollIntoView({ behavior: 'smooth' });
+        }, 20);
+      } else if(res.processingStatus === 'FAILED') {
+        setTimeout(()=> {
+          this.failedContent.nativeElement.scrollIntoView({ behavior: 'smooth' });
         }, 20);
       }
       this.uploadedResponses = res.imageMetaInfos.map((info) => {

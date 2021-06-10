@@ -352,6 +352,10 @@
         </div>
       </div>
 
+      <div class="failed" #failedContent *ngIf="blueprint.processingStatus === 'FAILED'">
+        処理が失敗しました。
+      </div>
+
       <div  [hidden]="!result">
         <div class='form-box mt-5' #resultContent>
           <div class='container pb-3'>
@@ -593,7 +597,7 @@
             <mat-spinner *ngIf="isSubmiting" diameter="28" matSuffix></mat-spinner>
             <span *ngIf="!isSubmiting">解析を始める</span>
         </button>
-        <span class="processing" *ngIf="blueprint.processingStatus && blueprint.processingStatus === 'PROCESSING'">
+        <span class="processing" *ngIf="blueprint.processingStatus && blueprint.processingStatus === 'RUNNING'">
           処理中 <mat-spinner style="margin-left: 20px;" diameter="28" matSuffix></mat-spinner>
         </span>
       </div>

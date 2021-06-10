@@ -2,6 +2,7 @@ import { DOCUMENT, Location } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { retry } from 'rxjs/operators';
 import { BaseComponent } from 'src/app/components/base.component';
 import { Blueprint } from 'src/app/models/blueprint';
 import { Building } from 'src/app/models/building';
@@ -42,11 +43,14 @@ export class HomeComponent extends BaseComponent implements OnInit {
     this.load();
     this.websocketService = new WebsocketService();
     this.websocketService.connect()
+      .pipe(retry())
       .subscribe(message => {
         console.log(message);
         this.load(true);
       },
       err => console.log(err));
+
+      this.websocketService.next('test');
   }
 
   load(notify = false) {

@@ -379,5 +379,24 @@ td {
           align-items: center;
 }
 
+.failed {
+  color: red;
+  font-size: 120%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: white;
+  padding: 30px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 10px rgb(0 0 0 / 60%);
+          box-shadow: 0 0 10px rgb(0 0 0 / 60%);
+}
+
 
 

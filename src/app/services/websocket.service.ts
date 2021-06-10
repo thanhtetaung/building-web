@@ -7,7 +7,7 @@ export class WebsocketService {
   subject!: WebSocketSubject<any>;
 
   connect(): WebSocketSubject<any> {
-    this.subject = webSocket( {
+    this.subject = webSocket({
       url: environment.webSocketBaseUrl + 'event-emitter?access_token=' + localStorage.getItem('accessToken'),
       openObserver: {
         next: value => {

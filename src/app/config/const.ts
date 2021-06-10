@@ -40,7 +40,7 @@ export const valueTextMap = {
   },
   "status": {
     "FAILED": "失敗",
-    "PROCESSING": "処理中",
+    "RUNNING": "処理中",
     "SUCCEEDED": "処理中",
     "COMPLETED": "完了"
   }
