@@ -49,8 +49,6 @@ export class HomeComponent extends BaseComponent implements OnInit {
         this.load(true);
       },
       err => console.log(err));
-
-      this.websocketService.next('test');
   }
 
   load(notify = false) {
