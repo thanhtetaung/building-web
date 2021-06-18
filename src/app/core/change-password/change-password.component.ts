@@ -41,7 +41,9 @@ export class ChangePasswordComponent extends BaseComponent implements OnInit {
       this.uiUtil.showMessage('パスワードを更新しました！');
       this.isUpdating = false;
     }, (e: HttpErrorResponse) => {
-        if (e.error.message && e.error.message == 'invalid oldPassword.') {
+        if (e.status == 401) {
+          this.doLogout();
+        } else if (e.error.message && e.error.message == 'invalid oldPassword.') {
           this.form.controls.oldPassword.setErrors({ invalid: true });
         } else {
           this.errorMessage = e.error.message ?? e.message;

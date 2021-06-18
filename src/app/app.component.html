@@ -1,28 +1,34 @@
-<div style="height: 7vh;">
-  <mat-toolbar color="primary">
-    <button mat-button class="menu-button" (click)='drawer.toggle()' *ngIf='authGuardService.isAuthenticated()'>
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>
-      <button mat-button routerLink="/">{{title}}</button>
-    </span>
-    <span class="spacer"></span>
-    <span *ngIf='authGuardService.isAuthenticated()'>
-      <button mat-button (click)='doLogout()'>ログアウト</button>
-    </span>
-  </mat-toolbar>
+<div class="nav-container">
+  <div class="toolbar-container">
+    <mat-toolbar color="primary">
+      <button mat-button class="menu-button" (click)='drawer.toggle()' *ngIf='authGuardService.isAuthenticated()'>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>
+        <button mat-button routerLink="/">{{title}}</button>
+      </span>
+      <span class="spacer"></span>
+      <span *ngIf='authGuardService.isAuthenticated()'>
+        <button mat-button (click)='doLogout()'>ログアウト</button>
+      </span>
+    </mat-toolbar>
+  </div>
+  <div class="content-container">
+    <mat-sidenav-container class="sidenav-container">
+      <mat-sidenav #drawer autoFocus="false" mode="over" class="sidenav">
+        <mat-nav-list>
+          <a mat-list-item routerLinkActive="active" (click)='navigate(["/"])'>ホーム</a>
+          <a mat-list-item routerLinkActive="active" (click)='navigate(["/profile"])'>メールアドレス</a>
+          <a mat-list-item routerLinkActive="active" (click)='navigate(["/changePassword"])' >パスワード変更</a>
+        </mat-nav-list>
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <router-outlet></router-outlet>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
 </div>
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer autoFocus="false" mode="over" class="sidenav">
-    <mat-nav-list>
-      <a mat-list-item routerLinkActive="active" (click)='navigate(["/"])'>ホーム</a>
-      <a mat-list-item routerLinkActive="active" (click)='navigate(["/profile"])'>メールアドレス</a>
-      <a mat-list-item routerLinkActive="active" (click)='navigate(["/changePassword"])' >パスワード変更</a>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content style="height: 93vh;">
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+
+
 
 

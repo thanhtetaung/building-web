@@ -90,12 +90,7 @@ export class BuildingComponent extends BaseComponent implements OnInit {
           }
 
         }, (e) => {
-          if (e.error.message) {
-            this.uiUtil.showMessage(e.error.message);
-          } else {
-            this.errorMessage = e.message;
-          }
-
+          this.handleErrorWithAlert(e);
         }, () => {
           this.isUploading = false;
           this.fileControl.setValue([]);
@@ -147,7 +142,7 @@ export class BuildingComponent extends BaseComponent implements OnInit {
         this.changeDetectorRef.detectChanges();
       }
     }, (e: HttpErrorResponse) => {
-      this.uiUtil.showMessage(e.error.message ?? e.message);
+      this.handleErrorWithAlert(e);
     });
   }
 
@@ -206,19 +201,23 @@ export class BuildingComponent extends BaseComponent implements OnInit {
 
       }, (e: HttpErrorResponse) => {
         this.isSubmiting = false;
-        this.uiUtil.showMessage(e.error.message ?? e.message);
+        this.handleErrorWithAlert(e);
       });
   }
 
   private scrollToFirstInvalidControl() {
-    const element: HTMLElement = this.el.nativeElement.querySelector("form .ng-invalid");
+    const firstInvalidControl: HTMLElement = this.el.nativeElement.querySelector("form .ng-invalid");
 
-    this.sideNavContent.scrollTo({
-      behavior: 'smooth',
+    window.scroll({
+      top: this.getTopOffset(firstInvalidControl),
       left: 0,
-      top: element.parentElement!.offsetTop - 150
+      behavior: "smooth"
     });
+  }
 
+  private getTopOffset(controlEl: HTMLElement): number {
+    const labelOffset = 150;
+    return controlEl.getBoundingClientRect().top + window.scrollY - labelOffset;
   }
 
   trackByIndex(index: number, object: any) {

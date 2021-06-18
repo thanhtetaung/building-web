@@ -1,47 +1,54 @@
-<div class="card-container">
-  <div class="new-wrapper">
-    <button mat-raised-button routerLink='/building' color='primary'>新規</button>
+<div class="home-container">
+  <div class="card-wrapper">
+    <div class="card-container">
+      <div class="new-wrapper">
+        <button mat-raised-button routerLink='/building' color='primary'>新規</button>
+      </div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>名前</th>
+              <th>敷地面積</th>
+              <th>防火地域</th>
+              <th>延べ面積</th>
+              <th>指定容積率</th>
+              <th>建築面積</th>
+              <th>指定建ペイ率</th>
+              <th>地下階数</th>
+              <th>建物高さ</th>
+              <th>用途地域</th>
+              <th>状態</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let building of buildings">
+              <td class="text-left">{{building.name}}</td>
+              <td>{{building.siteArea}}{{building.siteArea ? '㎡' : ''}}</td>
+              <td>{{fireZoneMap[building.fireZone]}}</td>
+              <td>{{building.totalFloorArea}}{{building.totalFloorArea ? '㎡' : ''}}</td>
+              <td>{{building.floorAreaRatio}}{{building.floorAreaRatio ? '%' : ''}}</td>
+              <td>{{building.buildingArea}}{{building.buildingArea ? '㎡' : ''}} </td>
+              <td>{{building.buildingCoverageRatio}}{{building.buildingCoverageRatio ? '%' : ''}}</td>
+              <td>{{building.numberOfBasementFloors}}{{building.numberOfBasementFloors ? '階' : ''}}</td>
+              <td>{{building.heightOfBuilding}}{{building.heightOfBuilding ? 'm' : ''}}</td>
+              <td>{{useDistrictsMap[building.useDistricts]}}</td>
+              <td [class]="building.processingStatus.toLowerCase()">{{statusMap[building.processingStatus]}}</td>
+              <td>
+                <button mat-raised-button class='detail' [routerLink]="['/building', building.id]" color='primary'>詳細</button>
+              </td>
+            </tr>
+            <tr *ngIf="!buildings || buildings.length === 0">
+              <td colspan="12" class="empty">データなし</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
-  <div class="table-wrapper">
-    <table>
-      <thead>
-        <tr>
-          <th>名前</th>
-          <th>敷地面積</th>
-          <th>防火地域</th>
-          <th>延べ面積</th>
-          <th>指定容積率</th>
-          <th>建築面積</th>
-          <th>指定建ペイ率</th>
-          <th>地下階数</th>
-          <th>建物高さ</th>
-          <th>用途地域</th>
-          <th>状態</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let building of buildings">
-          <td class="text-left">{{building.name}}</td>
-          <td>{{building.siteArea}}{{building.siteArea ? '㎡' : ''}}</td>
-          <td>{{fireZoneMap[building.fireZone]}}</td>
-          <td>{{building.totalFloorArea}}{{building.totalFloorArea ? '㎡' : ''}}</td>
-          <td>{{building.floorAreaRatio}}{{building.floorAreaRatio ? '%' : ''}}</td>
-          <td>{{building.buildingArea}}{{building.buildingArea ? '㎡' : ''}} </td>
-          <td>{{building.buildingCoverageRatio}}{{building.buildingCoverageRatio ? '%' : ''}}</td>
-          <td>{{building.numberOfBasementFloors}}{{building.numberOfBasementFloors ? '階' : ''}}</td>
-          <td>{{building.heightOfBuilding}}{{building.heightOfBuilding ? 'm' : ''}}</td>
-          <td>{{useDistrictsMap[building.useDistricts]}}</td>
-          <td [class]="building.processingStatus.toLowerCase()">{{statusMap[building.processingStatus]}}</td>
-          <td>
-            <button mat-raised-button class='detail' [routerLink]="['/building', building.id]" color='primary'>詳細</button>
-          </td>
-        </tr>
-        <tr *ngIf="!buildings || buildings.length === 0">
-          <td colspan="12" class="empty">データなし</td>
-        </tr>
-      </tbody>
-    </table>
+
+  <div class='footer'>
+    <app-footer></app-footer>
   </div>
 </div>
-

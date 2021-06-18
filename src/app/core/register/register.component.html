@@ -1,79 +1,83 @@
-<mat-card>
-  <mat-card-content>
-    <form action="" #registerForm="ngForm" (ngSubmit)="register()">
-      <h2>登録する</h2>
-      <mat-error *ngIf="errorMessage">
-        {{errorMessage}}
-      </mat-error>
-      <mat-form-field class="full-width-input" appearance='outline'>
-        <mat-label>ユーザー名</mat-label>
-        <input matInput placeholder="ユーザー名" [(ngModel)]='user.username'
-                id="username" name="username" minlength="5" maxLength="50" required #username="ngModel">
-          <mat-error *ngIf="(username.touched || registerForm.submitted) && username.hasError('required')" class="invalid-feedback required">ユーザー名は必須です。</mat-error>
-          <mat-error *ngIf="(username.touched || registerForm.submitted) && (username.hasError('minlength') || username.hasError('maxlength'))" class="invalid-feedback required">ユーザー名は 5 ～ 50 文字にする必要があります。</mat-error>
-          <mat-error *ngIf="username.hasError('invalid')" class="invalid-feedback required">ユーザー名が無効です。</mat-error>
-      </mat-form-field>
-      <mat-form-field class="full-width-input" appearance='outline'>
-        <mat-label>メールアドレス</mat-label>
-        <input matInput placeholder="メールアドレス" [(ngModel)]='user.email' email (keydown.enter)='requestVerification()'
-        (ngModelChange)="onEmailChange()"
-              id="email" name="email" required #email="ngModel">
-        <mat-spinner *ngIf="isRequesting" diameter="28" matSuffix></mat-spinner>
-        <button *ngIf="!isRequesting" mat-icon-button matSuffix type="button" (click)='requestVerification()'>
-          <mat-icon [class]="isVerified ? 'verified' : 'unverified'">verified_user</mat-icon>
-        </button>
-          <mat-error *ngIf="(email.touched || registerForm.submitted) && email.hasError('required')" class="invalid-feedback required">ユメールアドレスは必須です。</mat-error>
-          <mat-error *ngIf="(email.touched || registerForm.submitted) && email.hasError('email')" class="invalid-feedback required">メールアドレスが無効です。</mat-error>
-          <mat-error *ngIf="(email.touched || registerForm.submitted) && email.hasError('notVerified')" class="invalid-feedback required">メールを確認してください。</mat-error>
-      </mat-form-field>
-      <mat-form-field class="full-width-input" appearance='outline'>
-        <mat-label>パスワード</mat-label>
-        <input matInput placeholder="パスワード" [(ngModel)]='user.password' type="password"
-            pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,50})"
-            validateEqual='confirmPassword' reverse='true'
-            id="password" name="password" required #password="ngModel">
-          <mat-error *ngIf="(password.touched || registerForm.submitted) && password.hasError('required')" class="invalid-feedback required">
-            パスワードは必須です。
+<div class="register-container">
+  <div class="card-container">
+    <mat-card>
+      <mat-card-content>
+        <form action="" #registerForm="ngForm" (ngSubmit)="register()">
+          <h2>登録する</h2>
+          <mat-error *ngIf="errorMessage">
+            {{errorMessage}}
           </mat-error>
-          <mat-error *ngIf="(password.touched || registerForm.submitted) && password.hasError('pattern')" class="invalid-feedback required">
-            アルファベットの大文字、英字小文字を使用し、かつ数字か記号を組み合わせた8～50文字で入力してください。
-          </mat-error>
-      </mat-form-field>
-      <mat-form-field class="full-width-input" appearance='outline'>
-        <mat-label>パスワード(確認)</mat-label>
-        <input matInput placeholder="パスワード(確認)" [(ngModel)]='user.confirmPassword' type="password"
-                validateEqual='password'
-                id="confirmPassword" name="confirmPassword" required #confirmPassword="ngModel">
-          <mat-error *ngIf="(confirmPassword.touched || registerForm.submitted) && confirmPassword.hasError('required')" class="invalid-feedback required">パスワード(確認)は必須です。</mat-error>
-          <mat-error *ngIf="(confirmPassword.touched || registerForm.submitted) && !confirmPassword.hasError('required') && confirmPassword.hasError('validateEqual')" class="invalid-feedback required">
-            確認用パスワードと一致しません。
-          </mat-error>
-          <mat-error *ngIf="confirmPassword.hasError('invalid')" class="invalid-feedback required">Invalid Confirm Password.</mat-error>
-      </mat-form-field>
-      <mat-form-field class="full-width-input" appearance='outline'>
-        <mat-label>氏名（姓）</mat-label>
-        <input matInput placeholder="氏名（姓）" [(ngModel)]='user.lastName'
-                maxLength="50"
-                id="lastName" name="lastName" required #lastName="ngModel">
-          <mat-error *ngIf="(lastName.touched || registerForm.submitted) && lastName.hasError('required')" class="invalid-feedback required">氏名（姓）は必須です。</mat-error>
-          <mat-error *ngIf="lastName.hasError('invalid')" class="invalid-feedback required">Invalid Last Name</mat-error>
-          <mat-error *ngIf="(lastName.touched || registerForm.submitted) && lastName.hasError('maxlength')" class="invalid-feedback required">氏名（姓）は 5 ～ 50 文字にする必要があります。</mat-error>
-      </mat-form-field>
-      <mat-form-field class="full-width-input" appearance='outline'>
-        <mat-label>氏名（名）</mat-label>
-        <input matInput placeholder="氏名（名）" [(ngModel)]='user.firstName'
-                maxLength="50"
-                id="firstName" name="firstName" required #firstName="ngModel">
-          <mat-error *ngIf="(firstName.touched || registerForm.submitted) && firstName.hasError('required')" class="invalid-feedback required">氏名（名）は必須です。</mat-error>
-          <mat-error *ngIf="firstName.hasError('invalid')" class="invalid-feedback required">氏名（名）は必須です。</mat-error>
-          <mat-error *ngIf="(firstName.touched || registerForm.submitted) && firstName.hasError('maxlength')" class="invalid-feedback required">氏名（名）は 5 ～ 50 文字にする必要があります。</mat-error>
-      </mat-form-field>
-      <button type="submit" class="submit-button" mat-raised-button [disabled]="isRegistering" color="primary">
-        <mat-spinner *ngIf="isRegistering" diameter="28" matSuffix></mat-spinner>
-        <span *ngIf="!isRegistering">登録する</span>
-      </button>
-      <a class='signin' [routerLink]="['/login']">既に登録済みの方はこちらからログインしてください。 </a>
-    </form>
-  </mat-card-content>
-</mat-card>
-<app-footer></app-footer>
+          <mat-form-field class="full-width-input" appearance='outline'>
+            <mat-label>ユーザー名</mat-label>
+            <input matInput placeholder="ユーザー名" [(ngModel)]='user.username'
+                    id="username" name="username" minlength="5" maxLength="50" required #username="ngModel">
+              <mat-error *ngIf="(username.touched || registerForm.submitted) && username.hasError('required')" class="invalid-feedback required">ユーザー名は必須です。</mat-error>
+              <mat-error *ngIf="(username.touched || registerForm.submitted) && (username.hasError('minlength') || username.hasError('maxlength'))" class="invalid-feedback required">ユーザー名は 5 ～ 50 文字にする必要があります。</mat-error>
+              <mat-error *ngIf="username.hasError('invalid')" class="invalid-feedback required">ユーザー名が無効です。</mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width-input" appearance='outline'>
+            <mat-label>メールアドレス</mat-label>
+            <input matInput placeholder="メールアドレス" [(ngModel)]='user.email' email (keydown.enter)='requestVerification()'
+            (ngModelChange)="onEmailChange()"
+                  id="email" name="email" required #email="ngModel">
+            <mat-spinner *ngIf="isRequesting" diameter="28" matSuffix></mat-spinner>
+            <button *ngIf="!isRequesting" mat-icon-button matSuffix type="button" (click)='requestVerification()'>
+              <mat-icon [class]="isVerified ? 'verified' : 'unverified'">verified_user</mat-icon>
+            </button>
+              <mat-error *ngIf="(email.touched || registerForm.submitted) && email.hasError('required')" class="invalid-feedback required">ユメールアドレスは必須です。</mat-error>
+              <mat-error *ngIf="(email.touched || registerForm.submitted) && email.hasError('email')" class="invalid-feedback required">メールアドレスが無効です。</mat-error>
+              <mat-error *ngIf="(email.touched || registerForm.submitted) && email.hasError('notVerified')" class="invalid-feedback required">メールを確認してください。</mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width-input" appearance='outline'>
+            <mat-label>パスワード</mat-label>
+            <input matInput placeholder="パスワード" [(ngModel)]='user.password' type="password"
+                pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,50})"
+                validateEqual='confirmPassword' reverse='true'
+                id="password" name="password" required #password="ngModel">
+              <mat-error *ngIf="(password.touched || registerForm.submitted) && password.hasError('required')" class="invalid-feedback required">
+                パスワードは必須です。
+              </mat-error>
+              <mat-error *ngIf="(password.touched || registerForm.submitted) && password.hasError('pattern')" class="invalid-feedback required">
+                アルファベットの大文字、英字小文字を使用し、かつ数字か記号を組み合わせた8～50文字で入力してください。
+              </mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width-input" appearance='outline'>
+            <mat-label>パスワード(確認)</mat-label>
+            <input matInput placeholder="パスワード(確認)" [(ngModel)]='user.confirmPassword' type="password"
+                    validateEqual='password'
+                    id="confirmPassword" name="confirmPassword" required #confirmPassword="ngModel">
+              <mat-error *ngIf="(confirmPassword.touched || registerForm.submitted) && confirmPassword.hasError('required')" class="invalid-feedback required">パスワード(確認)は必須です。</mat-error>
+              <mat-error *ngIf="(confirmPassword.touched || registerForm.submitted) && !confirmPassword.hasError('required') && confirmPassword.hasError('validateEqual')" class="invalid-feedback required">
+                確認用パスワードと一致しません。
+              </mat-error>
+              <mat-error *ngIf="confirmPassword.hasError('invalid')" class="invalid-feedback required">Invalid Confirm Password.</mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width-input" appearance='outline'>
+            <mat-label>氏名（姓）</mat-label>
+            <input matInput placeholder="氏名（姓）" [(ngModel)]='user.lastName'
+                    maxLength="50"
+                    id="lastName" name="lastName" required #lastName="ngModel">
+              <mat-error *ngIf="(lastName.touched || registerForm.submitted) && lastName.hasError('required')" class="invalid-feedback required">氏名（姓）は必須です。</mat-error>
+              <mat-error *ngIf="lastName.hasError('invalid')" class="invalid-feedback required">Invalid Last Name</mat-error>
+              <mat-error *ngIf="(lastName.touched || registerForm.submitted) && lastName.hasError('maxlength')" class="invalid-feedback required">氏名（姓）は 5 ～ 50 文字にする必要があります。</mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width-input" appearance='outline'>
+            <mat-label>氏名（名）</mat-label>
+            <input matInput placeholder="氏名（名）" [(ngModel)]='user.firstName'
+                    maxLength="50"
+                    id="firstName" name="firstName" required #firstName="ngModel">
+              <mat-error *ngIf="(firstName.touched || registerForm.submitted) && firstName.hasError('required')" class="invalid-feedback required">氏名（名）は必須です。</mat-error>
+              <mat-error *ngIf="firstName.hasError('invalid')" class="invalid-feedback required">氏名（名）は必須です。</mat-error>
+              <mat-error *ngIf="(firstName.touched || registerForm.submitted) && firstName.hasError('maxlength')" class="invalid-feedback required">氏名（名）は 5 ～ 50 文字にする必要があります。</mat-error>
+          </mat-form-field>
+          <button type="submit" class="submit-button" mat-raised-button [disabled]="isRegistering" color="primary">
+            <mat-spinner *ngIf="isRegistering" diameter="28" matSuffix></mat-spinner>
+            <span *ngIf="!isRegistering">登録する</span>
+          </button>
+          <a class='signin' [routerLink]="['/login']">既に登録済みの方はこちらからログインしてください。 </a>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <app-footer></app-footer>
+</div>
