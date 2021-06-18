@@ -32,7 +32,7 @@ export class ProfileComponent extends BaseComponent implements OnInit {
       .subscribe((u) => {
         this.user = u;
       }, (e: HttpErrorResponse) => {
-        this.uiUtil.showMessage(e.error.message ?? e.message);
+        this.handleErrorWithAlert(e);
     });
   }
 
@@ -47,8 +47,12 @@ export class ProfileComponent extends BaseComponent implements OnInit {
       this.isUpdating = false;
       this.uiUtil.showMessage('プロフィールを更新しました！');
     }, (e: HttpErrorResponse) => {
+      if (e.status == 401) {
+        this.doLogout();
+      } else {
         this.errorMessage = e.error.message ?? e.message;
-        this.isUpdating = false;
+      }
+      this.isUpdating = false;
     });
   }
 

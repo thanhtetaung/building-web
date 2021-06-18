@@ -5,6 +5,8 @@
 export const environment = {
   production: false,
   staging: false,
+  // baseUrl: 'http://service.staging.i-husky.net/',
+  // webSocketBaseUrl: 'ws://service.staging.i-husky.net/'
   baseUrl: 'http://localhost:8080/',
   webSocketBaseUrl: 'ws://localhost:8080/'
 };

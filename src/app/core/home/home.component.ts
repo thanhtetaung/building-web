@@ -59,7 +59,7 @@ export class HomeComponent extends BaseComponent implements OnInit {
           this.changeDetectorRef.detectChanges();
         }
       }, (e: HttpErrorResponse) => {
-        this.uiUtil.showMessage(e.error.message ?? e.message);
+        this.handleErrorWithAlert(e);
     });
   }
 

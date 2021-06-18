@@ -1,9 +1,9 @@
 <form action="" #blueprintForm="ngForm" (ngSubmit)="submit()" ngxScrollToFirstInvalid>
   <div class='main'>
-    <div class='top-img'>
+    <div class='top-img' style="display: none;">
       <img src='assets/images/topimage.png'>
     </div>
-    <div class='sample-img'>
+    <div class='sample-img' style="display: none;">
       <div class='inner-box'>
         <h1 class='sample-title'>自動で図面のチェック</h1>
         <div class='sample-box-wrapper'>
@@ -89,6 +89,7 @@
               <mat-form-field class="full-width-input" appearance='outline'>
                 <mat-label>防火地域</mat-label>
                 <mat-select [(ngModel)]='blueprint.fireZone' id="fireZone" name="fireZone" #fireZone="ngModel" required>
+                  <mat-option value="null">防火地域</mat-option>
                   <mat-option value="fire_preventive_district">防火地域</mat-option>
                   <mat-option value="quasi_fire_preventive_district">準防火地域</mat-option>
                   <mat-option value="non_fire_preventive_district">非防火地域</mat-option>
@@ -169,7 +170,7 @@
               <mat-form-field class="full-width-input" appearance='outline'>
                 <mat-label>地下階数</mat-label>
                 <input matInput placeholder="地下階数" [(ngModel)]='blueprint.numberOfBasementFloors'
-                    required type="number"
+                    type="number"
                     id="numberOfBasementFloors" name="numberOfBasementFloors" #numberOfBasementFloors="ngModel">
                 <div matSuffix class='right-label'>階</div>
               </mat-form-field>

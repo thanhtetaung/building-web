@@ -2,42 +2,69 @@ table {
   width: 100%;
 }
 
-.card-container {
-  width: 90%;
-  margin: 30px 5% 0px 5%;
-  padding: 50px 10px 10px 0px;
-  -webkit-box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
-          box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
-  .table-wrapper {
-    padding: 20px;
-    th {
-      color: #000;
-      text-align: center;
-      padding: 10px 10px;
+.home-container {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.card-wrapper {
+  width: 100%;
+  -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+  .card-container {
+    width: 90%;
+    margin: 30px 5% 0px 5%;
+    padding: 50px 10px 10px 0px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 50px;
+    /* max-height: 90vh; */
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
+            box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
+    .table-wrapper {
+      padding: 20px;
+      th {
+        color: #000;
+        text-align: center;
+        padding: 10px 10px;
+      }
+      td {
+        text-align: center;
+        padding: 10px 5px;
+      }
+  
+      table tbody tr:nth-child(even) {
+        background: #f7f7f7;
+      }
+      table tbody  tr:nth-child(odd) {
+        background: #fff;
+      }
+  
     }
-    td {
-      text-align: center;
-      padding: 10px 5px;
+  
+    .new-wrapper {
+      text-align: right;
+      button {
+        display: inline-block;
+        right: 20px;
+        top: 0px;
+        width: 100px;
+      }
     }
+}
 
-    table tbody tr:nth-child(even) {
-      background: #f7f7f7;
-    }
-    table tbody  tr:nth-child(odd) {
-      background: #fff;
-    }
-
-  }
-
-  .new-wrapper {
-    text-align: right;
-    button {
-      display: inline-block;
-      right: 20px;
-      top: 0px;
-      width: 100px;
-    }
-  }
 
   button.detail {
     height: 30px;

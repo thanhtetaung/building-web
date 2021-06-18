@@ -42,8 +42,8 @@ export class BaseComponent {
       this.doLogout();
       return true;
     } else {
-      console.log('Response Msg : ' + response.message);
-      this.uiUtil.showError(response.message);
+      console.log('Response Msg : ' + response.error.message ?? response.message);
+      this.uiUtil.showError(response.error.message ?? response.message);
       return true;
     }
     return false;
