@@ -89,7 +89,7 @@
               <mat-form-field class="full-width-input" appearance='outline'>
                 <mat-label>防火地域</mat-label>
                 <mat-select [(ngModel)]='blueprint.fireZone' id="fireZone" name="fireZone" #fireZone="ngModel" required>
-                  <mat-option value="null">防火地域</mat-option>
+                  <mat-option value="unspecified">指定なし</mat-option>
                   <mat-option value="fire_preventive_district">防火地域</mat-option>
                   <mat-option value="quasi_fire_preventive_district">準防火地域</mat-option>
                   <mat-option value="non_fire_preventive_district">非防火地域</mat-option>

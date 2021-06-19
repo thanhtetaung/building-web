@@ -34,6 +34,7 @@ export const valueTextMap = {
     "electrical_equipment_plan": "電気設備図"
   },
   "fireZone": {
+    "unspecified": "指定なし",
     "fire_preventive_district": "防火地域",
     "quasi_fire_preventive_district": "準防火地域",
     "non_fire_preventive_district": "非防火地域"
