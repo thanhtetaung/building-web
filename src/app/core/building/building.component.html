@@ -412,11 +412,11 @@
                   </tr> -->
                   <tr>
                     <td>延べ面積</td>
-                    <td class='text-right'>{{result?.building?.totalFloorArea}}㎡</td>
+                    <td class='text-right'>{{result?.building?.totalFloorArea | number:'0.0-2'}}㎡</td>
                   </tr>
                   <tr>
                     <td>建築面積</td>
-                    <td class='text-right'>{{result?.building?.buildingArea}}㎡</td>
+                    <td class='text-right'>{{result?.building?.buildingArea | number:'0.0-2'}}㎡</td>
                   </tr>
                   <!-- <tr>
                     <td>地上階数</td>
@@ -432,11 +432,11 @@
                   </tr> -->
                   <tr>
                     <td>容積率</td>
-                    <td class='text-right'>{{result?.building?.floorAreaRatio}}%  延べ床面積 / 敷地面積</td>
+                    <td class='text-right'>{{result?.building?.floorAreaRatio | number:'0.0-2'}}%  延べ床面積 / 敷地面積</td>
                   </tr>
                   <tr>
                     <td>建ぺい率</td>
-                    <td class='text-right'>{{result?.building?.buildingCoverageRatio}}%  建築面積 / 敷地面積</td>
+                    <td class='text-right'>{{result?.building?.buildingCoverageRatio | number:'0.0-2'}}%  建築面積 / 敷地面積</td>
                   </tr>
                 </tbody>
               </table>
