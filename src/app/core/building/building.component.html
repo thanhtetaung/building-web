@@ -301,7 +301,7 @@
                 <mat-form-field class="full-width-input" appearance='outline' >
                   <mat-label>方角</mat-label>
                   <mat-select #direction="ngModel" [(ngModel)]='meta.direction' [disabled]='!meta.include'
-                  [required]="meta.blueprintType === 'elevation_plan' || meta.blueprintType === 'cross_section_plan'"
+                  multiple [required]="meta.blueprintType === 'elevation_plan' || meta.blueprintType === 'cross_section_plan'"
                   [id]="'direction' + i" [name]="'direction' + i" >
                     <mat-option value="east">東</mat-option>
                     <mat-option value="south">西</mat-option>
@@ -314,11 +314,16 @@
               <div *ngIf="meta.blueprintType === 'area_table' || meta.blueprintType === 'floor_plan'">
                 <mat-form-field class="full-width-input" appearance='outline'>
                   <mat-label>階</mat-label>
-                  <input matInput placeholder="階" [(ngModel)]='meta.floors' [disabled]='!meta.include'
+                  <!-- <input matInput placeholder="階" [(ngModel)]='meta.floors' [disabled]='!meta.include'
                       [required]="meta.blueprintType === 'area_table' || meta.blueprintType === 'floor_plan'" type="number"
                       [name]="'floors' + i"
                       [id]="'floors' + i"
-                      #floors="ngModel">
+                      #floors="ngModel"> -->
+                  <mat-select [(ngModel)]='meta.floors' [disabled]='!meta.include' multiple
+                    [required]="meta.blueprintType === 'area_table' || meta.blueprintType === 'floor_plan'"
+                    [name]="'floors' + i" [id]="'floors' + i" #floors="ngModel">
+                    <mat-option *ngFor="let num of getFloors(blueprint.numberOfAboveGroundFloors)" [value]="num">{{num}}</mat-option>
+                  </mat-select>
                 </mat-form-field>
               </div>
               <!-- <div *ngIf="meta.blueprintType === 'area_table' || meta.blueprintType === 'floor_plan'">
