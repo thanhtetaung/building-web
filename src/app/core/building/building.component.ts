@@ -18,6 +18,8 @@ import { environment } from 'src/environments/environment';
 import { MatSidenavContent } from '@angular/material/sidenav';
 import { WebsocketService } from 'src/app/services/websocket.service';
 import { retry } from 'rxjs/operators';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 @Component({
   selector: 'app-building',
@@ -130,16 +132,16 @@ export class BuildingComponent extends BaseComponent implements OnInit {
           this.failedContent.nativeElement.scrollIntoView({ behavior: 'smooth' });
         }, 20);
       }
-      this.uploadedResponses = res.imageMetaInfos.map((info) => {
-        info.fileMetaInfos = info.fileMetaInfos.map((fileMeta, i) => {
-          fileMeta.imageUrl = info.imageList[i];
-          return fileMeta;
-        });
-        return info;
-      });
-
       if (notify) {
         this.changeDetectorRef.detectChanges();
+      } else {
+        this.uploadedResponses = res.imageMetaInfos.map((info) => {
+          info.fileMetaInfos = info.fileMetaInfos.map((fileMeta, i) => {
+            fileMeta.imageUrl = info.imageList[i];
+            return fileMeta;
+          });
+          return info;
+        });
       }
     }, (e: HttpErrorResponse) => {
       this.handleErrorWithAlert(e);
@@ -195,10 +197,6 @@ export class BuildingComponent extends BaseComponent implements OnInit {
           this.isSubmiting = false;
         }
 
-        // dummy img override
-        // this.result.externalShapeDrawnImgs.forEach(img => img.img = 'https://husky-ai-data.s3.amazonaws.com/building_blueprint_analysis/result_files/JngjndfjhBfj/eyJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOiJLb3VyeXUiLCJsYXN0TmFtZSI6IktpbiIsInJvbGVOYW1lIjoiUk9MRV9VU0VSIiwidXNlcm5hbWUiOiJrb211Z2kiLCJzdWIiOiJrb211Z2kiLCJpc3MiOiJadWx1IiwiZXhwIjoxNjQ2Mjk0NTk2LCJpYXQiOjE2MTQ3NTg1OTZ9.BuiFLXY0HzaiV4V2FHzoxJpPIPJlXjWbWcsSgEeipdw//area_table_external_shape_drawn_img_0.png?AWSAccessKeyId=AKIAIAGWIZNVODLSWWMQ&Signature=ZOb8QradixTWTwpWf81RpRplrFM%3D&Expires=1617902617')
-        // this.result.fixtureSymbolDrawnImgs.forEach(img => img.img = 'https://husky-ai-data.s3.amazonaws.com/building_blueprint_analysis/result_files/JngjndfjhBfj/eyJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOiJLb3VyeXUiLCJsYXN0TmFtZSI6IktpbiIsInJvbGVOYW1lIjoiUk9MRV9VU0VSIiwidXNlcm5hbWUiOiJrb211Z2kiLCJzdWIiOiJrb211Z2kiLCJpc3MiOiJadWx1IiwiZXhwIjoxNjQ2Mjk0NTk2LCJpYXQiOjE2MTQ3NTg1OTZ9.BuiFLXY0HzaiV4V2FHzoxJpPIPJlXjWbWcsSgEeipdw//area_table_external_shape_drawn_img_0.png?AWSAccessKeyId=AKIAIAGWIZNVODLSWWMQ&Signature=ZOb8QradixTWTwpWf81RpRplrFM%3D&Expires=1617902617')
-
       }, (e: HttpErrorResponse) => {
         this.isSubmiting = false;
         this.handleErrorWithAlert(e);
@@ -244,6 +242,14 @@ export class BuildingComponent extends BaseComponent implements OnInit {
     }
 
     return new Array(range);
+  }
+
+  getFloors(count: number) {
+    if (!count) {
+      return new Array();
+    }
+
+    return [...Array(count).keys()].map(e => e + 1);
   }
 
   ngOnDestroy() {

@@ -1,9 +1,9 @@
 export class FileMeta {
   include: boolean = true;
   blueprintType!: string
-  floors!: number;
+  floors: Array<number> = [];
   area!: string;
   imageUrl!: string;
-  direction!: string;
+  direction: Array<string> = [];
   numberOfRoom!: number;
 }
