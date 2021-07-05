@@ -1,6 +1,6 @@
 import { Floor } from "./floor";
 
-export class Building {
+export class BlueprintAnalysisBuilding {
   buildingArea!: number;
   totalFloorArea!: number;
   buildingCoverageRatio!: number;

@@ -4,8 +4,8 @@ import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { retry } from 'rxjs/operators';
 import { BaseComponent } from 'src/app/components/base.component';
-import { Blueprint } from 'src/app/models/blueprint';
-import { Building } from 'src/app/models/building';
+import { BlueprintBuilding } from 'src/app/models/blueprint-building';
+import { BlueprintAnalysisBuilding } from 'src/app/models/blueprint-analysis-building';
 import { BuildingService } from 'src/app/services/building.service';
 import { HistoryService } from 'src/app/services/history-service';
 import { WebserviceInterceptor } from 'src/app/services/webservice-interceptor';
@@ -23,7 +23,7 @@ export class HomeComponent extends BaseComponent implements OnInit {
   useDistrictsMap = valueTextMap.useDistricts;
   fireZoneMap = valueTextMap.fireZone;
   statusMap = valueTextMap.status;
-  buildings!: Array<Blueprint>;
+  buildings!: Array<BlueprintBuilding>;
   websocketService!: WebsocketService;
 
   constructor(private buildingService: BuildingService, router: Router, uiUtil: UiUtil,

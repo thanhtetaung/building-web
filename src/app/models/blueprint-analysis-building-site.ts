@@ -1,4 +1,4 @@
-export class BuildingSite {
+export class BlueprintAnalysisBuildingSite {
   siteArea!: number;
   floorAreaRatioLimit!: number;
   minFloorAreaRatioLimit!: number;

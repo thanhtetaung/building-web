@@ -4,9 +4,9 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { configuration } from '../config/configuration';
-import { Blueprint } from '../models/blueprint';
+import { BlueprintBuilding } from '../models/blueprint-building';
 import { BlueprintAnalysisResponse } from '../models/blueprint-analysis-response';
-import { Building } from '../models/building';
+import { BlueprintAnalysisBuilding } from '../models/blueprint-analysis-building';
 import { UploadResponse } from '../models/upload-response';
 
 @Injectable({
@@ -44,15 +44,15 @@ export class BuildingService {
 
   }
 
-  blueprintAnalysis(blueprint: Blueprint): Observable<Blueprint> {
-    return this.http.post<Blueprint>(environment.baseUrl + 'v1/blueprintAnalysis', blueprint);
+  blueprintAnalysis(blueprint: BlueprintBuilding): Observable<BlueprintBuilding> {
+    return this.http.post<BlueprintBuilding>(environment.baseUrl + 'v1/blueprintAnalysis', blueprint);
   }
 
-  getBuildings(): Observable<Array<Blueprint>> {
-    return this.http.get<Array<Blueprint>>(environment.baseUrl + 'v1/buildings');
+  getBuildings(): Observable<Array<BlueprintBuilding>> {
+    return this.http.get<Array<BlueprintBuilding>>(environment.baseUrl + 'v1/buildings');
   }
 
-  getBuilding(id: string): Observable<Blueprint> {
-    return this.http.get<Blueprint>(environment.baseUrl + 'v1/buildings/' + id);
+  getBuilding(id: string): Observable<BlueprintBuilding> {
+    return this.http.get<BlueprintBuilding>(environment.baseUrl + 'v1/buildings/' + id);
   }
 }

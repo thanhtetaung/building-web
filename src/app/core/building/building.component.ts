@@ -5,7 +5,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FileUploadControl, FileUploadValidators } from '@iplab/ngx-file-upload';
 import { BaseComponent } from 'src/app/components/base.component';
-import { Blueprint } from 'src/app/models/blueprint';
+import { BlueprintBuilding } from 'src/app/models/blueprint-building';
 import { BlueprintAnalysisResponse } from 'src/app/models/blueprint-analysis-response';
 import { FileMeta } from 'src/app/models/file-meta';
 import { UploadResponse } from 'src/app/models/upload-response';
@@ -28,7 +28,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 })
 export class BuildingComponent extends BaseComponent implements OnInit {
 
-  blueprint = new Blueprint();
+  blueprint = new BlueprintBuilding();
   progress = 0;
   isUploading = false;
   result: BlueprintAnalysisResponse | undefined;

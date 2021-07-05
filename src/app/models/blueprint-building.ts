@@ -2,7 +2,7 @@ import { BlueprintAnalysisResponse } from "./blueprint-analysis-response";
 import { FileMeta } from "./file-meta";
 import { UploadResponse } from "./upload-response";
 
-export class Blueprint {
+export class BlueprintBuilding {
   id!: string;
   name!: string;
   siteArea!: number;
