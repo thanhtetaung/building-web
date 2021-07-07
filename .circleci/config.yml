@@ -67,7 +67,7 @@ jobs:
       - run:
           name: Deploy to Staging EC2 via SSH
           command: |
-            ssh $SSH_USER@$SSH_STAGING_HOST "cd /home/ubuntu/building/building-web/ && docker-compose down && docker-compose pull && docker-compose up -d"
+            ssh $SSH_USER@$SSH_STAGING_HOST "cd /home/ubuntu/building/ && . aws-ecr-config.ssh && cd /home/ubuntu/building/building-web/ && docker-compose down && docker-compose pull && docker-compose up -d"
 
 workflows:
   version: 2.1

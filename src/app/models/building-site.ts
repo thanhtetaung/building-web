@@ -4,4 +4,5 @@ export class BuildingSite {
   minFloorAreaRatioLimit!: number;
   floorAreaRatioLegalMultiplier!: number;
   floorAreaRatioLimitAddingValue!: number;
+  floorAreaRatioPermission!: string;
 }
