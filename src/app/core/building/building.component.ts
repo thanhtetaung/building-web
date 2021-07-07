@@ -40,6 +40,7 @@ export class BuildingComponent extends BaseComponent implements OnInit {
   useDistrictsMap = valueTextMap.useDistricts;
   specialRoadExistenceMap = valueTextMap.specialRoadExistence;
   blueprintTypeMap = valueTextMap.blueprintType;
+  fireZoneMap = valueTextMap.fireZone;
 
 
   @ViewChild('blueprintForm', {static: true}) blueprintForm!: NgForm;

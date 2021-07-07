@@ -398,5 +398,24 @@ td {
           box-shadow: 0 0 10px rgb(0 0 0 / 60%);
 }
 
+.input-value, .ai-result {
+  width: 80%;
+  min-width: 600px;
+  margin: 0;
+}
+
+.ai-result + table {
+  min-width: 600px;
+}
+
+.input-value td:nth-child(2), 
+.ai-result td:nth-child(2), 
+.ai-result + table td {
+  text-align: right;
+}
+
+.ai-result + table td:nth-child(1) {
+  text-align: left;
+}
 
 
